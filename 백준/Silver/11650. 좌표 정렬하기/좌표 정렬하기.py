@@ -8,7 +8,5 @@ for i in range(n):
     x, y = map(int, input().rstrip().split())
     pos = [x, y]
     coordinate.append(pos)
-coordinate.sort()
 
-for i in range(n):
-    print(coordinate[i][0], coordinate[i][1])
+for i in sorted(coordinate): print(i[0], i[1])
