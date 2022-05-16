@@ -3,10 +3,8 @@ stk = []
 sick = list(input())
 
 for i in sick:
-    if i.isalpha():
-        print(i, end="")
-    elif i == "(":
-        stk.append(i)
+    if i.isalpha(): print(i, end="")
+    elif i == "(": stk.append(i)
     elif i ==")":
         while True:
             tmp = stk.pop()
