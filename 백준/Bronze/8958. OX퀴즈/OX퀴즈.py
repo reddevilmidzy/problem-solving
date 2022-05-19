@@ -1,7 +1,9 @@
-test_case = int(input()) # 몇개 오는지 확인
+import sys
+input = sys.stdin.readline
+test_case = int(input().rstrip()) # 몇개 오는지 확인
 ox = [] # ox 담을거
 for i in range(test_case):
-  xoxo = input()
+  xoxo = input().rstrip()
   ox.append(xoxo)
   long = (len(ox[i]))
   plus = 0
