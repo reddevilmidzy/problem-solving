@@ -1,7 +1,4 @@
-# dict를 사용한 문제
 import sys
-from unicodedata import name
-
 input = sys.stdin.readline
 
 books = {}
