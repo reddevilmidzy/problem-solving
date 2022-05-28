@@ -1,6 +1,3 @@
-import time
-star_time = time.time()
-
 n, kim, im = map(int, input().split())
 if n%2 == 0:
     star = [i for i in range(1, n+1)]
@@ -15,11 +12,8 @@ name = set()
 while len(star)>=2:
     for idx, s in enumerate(star):
         if idx%2 == 0:
-            #print("check", s, star[idx+1])
             if s in vs and star[idx+1] in vs:
                 print(cnt)
-                end_time = time.time()
-                #print("time :", end_time - star_time)
                 exit()
             elif s in vs and star[idx+1] not in vs:
                 new.append(s)
