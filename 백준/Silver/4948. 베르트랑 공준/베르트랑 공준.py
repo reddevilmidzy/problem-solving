@@ -1,20 +1,23 @@
 import sys
 input = sys.stdin.readline
 
-def is_prime(n):
-    if n == 1:
-        return 0
-    for i in range(2, int(n**0.5)+1):
-        if n%i == 0:
-            return 0
-    return 1
+m = 123456
+arr = [True for i in range(1, m*2+2)]
+arr[0], arr[1] = False, False
+
+for i in range(2, int((m*2)**0.5)+1):
+    j = 2
+    while i*j <= m*2:
+        if arr[i*j]:
+            arr[i*j] = False
+        j += 1
 
 while True:
-    n = int(input().rstrip())
+    n = int(input())
     if n == 0:
         break
-    arr = [i for i in range(n+1, 2*n+1) if i%2 != 0 or i==2]
-    ans = 0
-    for k in arr:
-        ans += is_prime(k)
-    print(ans)
+    cnt = 0
+    for i in range(n+1, 2*n+1):
+        if arr[i]:
+            cnt += 1
+    print(cnt)
