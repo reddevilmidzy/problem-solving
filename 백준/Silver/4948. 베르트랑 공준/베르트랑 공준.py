@@ -12,7 +12,6 @@ for i in range(2, int((m*2)**0.5)+2):
             arr[i*j] = False
             j += 1
 
-#print(arr)
 while True:
     n = int(input())
     if n == 0:
