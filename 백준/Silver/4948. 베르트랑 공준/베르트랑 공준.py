@@ -5,13 +5,14 @@ m = 123456
 arr = [True for i in range(1, m*2+2)]
 arr[0], arr[1] = False, False
 
-for i in range(2, int((m*2)**0.5)+1):
-    j = 2
-    while i*j <= m*2:
-        if arr[i*j]:
+for i in range(2, int((m*2)**0.5)+2):
+    if arr[i]:
+        j = 2
+        while i * j <= 2*m:
             arr[i*j] = False
-        j += 1
+            j += 1
 
+#print(arr)
 while True:
     n = int(input())
     if n == 0:
