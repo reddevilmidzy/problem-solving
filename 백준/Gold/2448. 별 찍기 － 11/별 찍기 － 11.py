@@ -1,6 +1,5 @@
 import sys
 input = sys.stdin.readline
-print = sys.stdout.write
 N = int(input())
 
 arr = [[' ']*(2*N-1) for i in range(N)]
@@ -19,7 +18,5 @@ def makeStar(n, x, y):
 
 makeStar(N, N-1, 0)
 
-for y in range(N) :
-    for x in range(2*N - 1) :
-        print(arr[y][x])
-    print('\n')
+for i in arr:
+    print(''.join(i))
