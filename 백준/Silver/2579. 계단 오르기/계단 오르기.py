@@ -2,7 +2,6 @@ import sys
 input = sys.stdin.readline
 n = int(input())
 stair = [int(input().rstrip()) for i in range(n)]
-
 dp = [0] * (10**4+1)
 if n == 1:
     print(stair[0])
