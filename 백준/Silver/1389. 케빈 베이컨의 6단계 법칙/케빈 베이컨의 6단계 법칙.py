@@ -6,16 +6,15 @@ def bfs(v, visited):
     queue = deque()
     queue.append([v,0])
     visited[v] = True
-    ans = []
+    ans = 0
     while queue:
         k,cnt = queue.popleft()
-        ans.append(cnt)
-        #print('k', k, 'cnt',cnt)
+        ans += cnt
         for i in graph[k]:
             if not visited[i]:
                 visited[i] = True
                 queue.append([i,cnt+1])
-    return sum(ans)
+    return ans
 n,m = map(int,input().rstrip().split())
 graph = [[] for _ in range(n+1)]
 for _ in range(m):
