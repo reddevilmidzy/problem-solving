@@ -14,21 +14,16 @@ def bfs():
                 if abs(x-mx)+abs(y-my) <= 1000:
                     visited[i] = True
                     queue.append([mx,my])
-    
+                    if i == n+1:
+                        return True
     return visited[-1]
 
 t = int(input())
 for _ in range(t):
     n = int(input())
-    pos = []
     visited = [False for _ in range(n+2)]
-    pos.append(list(map(int,input().rstrip().split()))) # 첫번째 배열 시작 위치
-    for i in range(n):
-        pos.append(list(map(int,input().rstrip().split())))
-    
-    pos.append(list(map(int,input().rstrip().split()))) # 페스티발 마지막 배열
-    
-    # print('pos',pos)
+    # 0:시작, 마지막: 페스티발
+    pos = [list(map(int,input().rstrip().split())) for _ in range(n+2)]
     if bfs():
         print('happy')
     else:
