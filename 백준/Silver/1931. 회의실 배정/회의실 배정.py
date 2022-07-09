@@ -1,19 +1,21 @@
 import sys
 input = sys.stdin.readline
-n = int(input().rstrip())
-room = []
+
+n = int(input())
+meet = []
+
 for i in range(n):
-    start, finish = map(int, input().rstrip().split())
-    room.append([start, finish])
+    a,b= map(int,input().split())
+    meet.append([a,b])
 
-room.sort(key= lambda x : x[0])
-room.sort(key= lambda x : x[1])
+meet.sort(key=lambda x: (x[1],x[0]))
 
-cnt = 1
-end = room[0][1]
-for j in range(1, n):
-    if room[j][0] >= end:
-        cnt += 1
-        end = room[j][1]
+ans = 0
+end = 0
 
-print(cnt)
+for i in range(len(meet)):
+    if end <= meet[i][0]:
+        end = meet[i][1]
+        ans += 1
+        
+print(ans)
