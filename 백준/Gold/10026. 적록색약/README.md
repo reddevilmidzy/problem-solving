@@ -1,6 +1,7 @@
 # [Gold V] 적록색약 - 10026 
 
-[문제 링크](https://www.acmicpc.net/problem/10026) [풀이 링크](https://lazypazy.tistory.com/143)
+[문제 링크](https://www.acmicpc.net/problem/10026) 
+[풀이 링크](https://lazypazy.tistory.com/143)
 
 ### 성능 요약
 
