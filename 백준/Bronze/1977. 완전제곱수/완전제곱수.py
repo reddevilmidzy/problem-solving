@@ -1,0 +1,1 @@
+ans = [i for i in range(int(input()),int(input())+1) if i in [j**2 for j in range(1, 101)]];print(sum(ans),ans[0],sep='\n') if ans else print(-1)
