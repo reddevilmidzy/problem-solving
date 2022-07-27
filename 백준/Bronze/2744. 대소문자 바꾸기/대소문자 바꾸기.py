@@ -1,0 +1,1 @@
+print(*[i.upper() if i==i.lower() else i.lower() for i in input()],sep='')
