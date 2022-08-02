@@ -5,7 +5,7 @@ input=sys.stdin.readline
 def bfs(a,b):
     queue=deque()
     queue.append([a,''])
-    visited={a:1}
+    visited=[False]*10000
     while queue:
         tob,pro=queue.popleft()
         if tob==b:
@@ -26,8 +26,8 @@ def bfs(a,b):
         move=[(2*tob)%10000, S, L, R]
         way=['D','S','L','R']
         for i in range(4):
-            if move[i] not in visited and move[i] < 100000:
-                visited[move[i]]=1
+            if not visited[move[i]] and move[i] < 10000:
+                visited[move[i]] = True
                 queue.append([move[i], pro+way[i]])
 
         
