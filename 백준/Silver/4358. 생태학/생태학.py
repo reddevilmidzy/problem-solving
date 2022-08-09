@@ -11,4 +11,4 @@ while True:
     sor += 1
     tree[t]+=1
 for k,v in sorted(tree.items()):
-    print("%s %.4f" % (k,v/sor*100))
+    print(k,'{:.4f}'.format(v/sor*100))
