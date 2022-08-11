@@ -33,8 +33,5 @@ for _ in range(q):
         graph[j].remove(i)
 
     for ans in bfs():
-        if ans[0]:
-            print(ans[1], end=' ')
-        else:
-            print(-1, end=' ')
+        print(ans[1] if ans[0] else -1, end=' ')
     print()
