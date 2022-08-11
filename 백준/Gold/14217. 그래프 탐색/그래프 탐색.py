@@ -4,14 +4,14 @@ input =sys.stdin.readline
 
 def bfs():
     queue = deque()
-    visited = [[False,0] for _ in range(n+1)]
-    visited[1] = [True, 0]
+    visited = [-1]*(n+1)
+    visited[1] = 0
     queue.append([1, 0])
     while queue:
         now,dis = queue.popleft()
         for i in graph[now]:
-            if not visited[i][0]:
-                visited[i] = [True, dis+1]
+            if visited[i]==-1:
+                visited[i] = dis+1
                 queue.append([i, dis+1])
     return visited[1:]
 
@@ -32,6 +32,4 @@ for _ in range(q):
         graph[i].remove(j)
         graph[j].remove(i)
 
-    for ans in bfs():
-        print(ans[1] if ans[0] else -1, end=' ')
-    print()
+    print(*bfs())
