@@ -1,4 +1,3 @@
-import collections
 import sys
 from collections import deque
 input = sys.stdin.readline
@@ -18,11 +17,9 @@ def bfs():
     queue.append([1,1,False,1])
     while queue:
         x,y,b,cnt = queue.popleft()
-        # print('x',x,'y',y,'b',b)
         if x == n and y == m:
             return cnt
         if not b:
-            # print(111)
             for i in range(4):
                 nx = x + dx[i]
                 ny = y + dy[i]
