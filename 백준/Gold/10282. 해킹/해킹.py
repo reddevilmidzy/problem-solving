@@ -2,7 +2,7 @@ import sys
 import heapq
 input = sys.stdin.readline
 
-INF = int(1e9)
+INF = int(1e9) # 무한
 def dijkstra(start):
     q = []
     heapq.heappush(q, (0, start))
@@ -17,7 +17,6 @@ def dijkstra(start):
             if cost < distance[i[0]]:
                 distance[i[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
-
 
 for _ in range(int(input())): # 테스트 케이스
     n,d,c = map(int,input().split()) # 컴개수, 의존성개수, 해킹당한 컴
