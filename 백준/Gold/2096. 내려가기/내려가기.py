@@ -3,11 +3,8 @@ input = sys.stdin.readline
 
 n = int(input())
 
-max_res = [0,0,0]
-min_res = [0,0,0]
-
-max_tmp = [0,0,0]
-min_tmp = [0,0,0]
+max_res,min_res = [0,0,0],[0,0,0]
+max_tmp,min_tmp = [0,0,0],[0,0,0]
 
 for _ in range(n):
     l,c,r = map(int,input().split())
