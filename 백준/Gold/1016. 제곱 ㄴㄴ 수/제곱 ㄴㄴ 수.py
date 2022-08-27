@@ -6,7 +6,7 @@ while sqr <= last:
     i = sqr**2
     tmp = (n//i)*i
     while tmp<=m:
-        if n <= tmp and tmp <= m:
+        if n <= tmp:
             arr[tmp-n] = 0
         tmp += i
     sqr += 1
