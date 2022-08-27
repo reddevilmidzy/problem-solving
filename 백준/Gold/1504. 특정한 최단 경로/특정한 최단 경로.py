@@ -2,7 +2,7 @@ import sys, heapq
 input = sys.stdin.readline
 
 def dijkstra(start, end):
-    dis=[0xffffff]*(n+1)
+    dis=[int(1e9)]*(n+1)
     dis[start]=0
     q = [[0,start]]
     while q:
@@ -27,5 +27,4 @@ first_stop, second_stop=map(int,input().rstrip().split())
 first_path = dijkstra(1, first_stop)+dijkstra(first_stop, second_stop)+dijkstra(second_stop,n)
 second_path = dijkstra(1, second_stop)+dijkstra(second_stop, first_stop)+dijkstra(first_stop,n)
 
-
-print(-1 if first_path>=0xffffff and second_path>=0xffffff else min(first_path, second_path))
+print(-1 if first_path>=1e9 and second_path>=1e9 else min(first_path, second_path))
