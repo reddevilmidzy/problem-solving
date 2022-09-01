@@ -1,9 +1,9 @@
 n=int(input())
-dp = [0,1]
-if n <= 1:
+dp = [0,1,1]
+if n <= 2:
     print(dp[n])
 else:
-    for i in range(2,n+1):
+    for i in range(3,n+1):
         x=dp.pop()
         y=dp.pop()
         dp.append(x)
