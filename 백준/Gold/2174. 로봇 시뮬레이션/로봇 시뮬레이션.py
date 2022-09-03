@@ -3,18 +3,16 @@ input = sys.stdin.readline
 
 a,b = map(int,input().split()) # 좌표 정보
 n,m = map(int,input().split()) # 로봇갯수, 명령어갯수
-graph = [[0]*(a+1) for _ in range(b+1)]
-robot = dict()
+graph = [[0]*(a+1) for _ in range(b+1)] # 그래프
+robot = dict() # 로봇의 위치 그리고 방향 담을 dict
 move = {'N':[1,0], 'W':[0,-1], 'S':[-1,0],'E':[0,1]}
 tmp = ['N','W','S','E']
-res = ''
+res = 'OK'
 for i in range(1,n+1):
     x,y,c = map(str,input().rstrip().split())
     x,y = int(x),int(y)
     graph[y][x] = i
     robot[i] = [y,x,c]
-
-#print(robot)
 
 for i in range(m):
     ro,code,move_cnt = map(str,input().rstrip().split())
@@ -23,35 +21,28 @@ for i in range(m):
     ny = robot[ro][0]
     pos = robot[ro][2]
     move_cnt = int(move_cnt)
-    # now = 0
-    #print('x',x, 'y',y)
+
     if code == 'L':
         move_cnt %= 4
         now = (tmp.index(pos)+move_cnt)%4
         robot[ro][2] = tmp[now]
-        #print('방향',robot[ro][2])
+
     elif code=='R':
         move_cnt %= 4
-        #print('테스트케이스')
-        #print(tmp.index(pos), move_cnt, (-3)%4)
         now = (tmp.index(pos)-move_cnt)%4
         robot[ro][2] = tmp[now]
-        #print('방향',robot[ro][2])
-        #pass
     else:
         for j in range(move_cnt):
             nx = nx + move[pos][1]
             ny = ny + move[pos][0]
-            #print(nx,ny)
-            #print('nx',nx,'ny',ny)
+            # 인덱스 벗어난다면
             if 1 > nx or nx > a or 1 > ny or ny > b:
-                #print('인덱스 벗어남')
-                if res == '':
+                if res == 'OK':
                     res = f'Robot {ro} crashes into the wall'
-                    #print(ro)
                 break
+            # 이동한 자리에 이미 다른 로봇이 있다면
             if graph[ny][nx] != 0:
-                if res =='':
+                if res == 'OK':
                     res = f'Robot {ro} crashes into robot {graph[ny][nx]}'
                 break
         else:
@@ -64,4 +55,4 @@ for i in range(m):
             robot[ro][0] = ny
             robot[ro][1] = nx
 
-print(res if res!='' else 'OK')
+print(res)
