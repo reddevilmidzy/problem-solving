@@ -20,7 +20,7 @@ def burn():
     return visited
 
 
-def bfs(a,b,v):
+def bfs(a,b):
     q = deque()
     q.append([a,b,1])
     while q:
@@ -54,5 +54,5 @@ for _ in range(int(input())):
             elif graph[i][j] == '@':
                 sx,sy = i,j
     visit = burn()
-    print(bfs(sx,sy,visit))
+    print(bfs(sx,sy))
     
