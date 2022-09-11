@@ -6,7 +6,6 @@ dx = [0,1,-1,0]
 dy = [1,0,0,-1]
 
 def burn():
-    # queue.append([a,b,1])
     while queue:
         x,y,t = queue.popleft()
         for i in range(4):
@@ -40,12 +39,13 @@ def bfs(a,b,v):
                     q.append([nx,ny,c+1])
                     visit[nx][ny] = -1
     return 'IMPOSSIBLE'
+
+
 for _ in range(int(input())):
     w,h = map(int,input().split())
     graph = [list(map(str,input().rstrip())) for _ in range(h)]
     queue = deque()
     visited = [[0]*(w) for _ in range(h)]
-    # sx,sy = 0,0
     for i in range(h):
         for j in range(w):
             if graph[i][j] == '*':
