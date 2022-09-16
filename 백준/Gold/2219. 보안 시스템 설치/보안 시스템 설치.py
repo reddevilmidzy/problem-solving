@@ -3,7 +3,6 @@ input = sys.stdin.readline
 
 INF = int(1e9)
 n,m = map(int,input().split())
-ans = [0]*(n+1)
 graph = [[INF]*(n+1) for _ in range(n+1)]
 for _ in range(m):
     a,b,c = map(int,input().split())
