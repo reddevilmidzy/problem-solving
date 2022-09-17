@@ -27,8 +27,6 @@ def dfs(start):
     global route
     route.append(start)
     for i in root[start]:
-        # route.append(start)
-        # print(i)
         dfs(i)
 
 n = int(input())
