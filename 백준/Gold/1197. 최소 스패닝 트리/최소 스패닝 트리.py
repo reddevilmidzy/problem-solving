@@ -1,5 +1,4 @@
-import heapq
-import sys
+import heapq, sys
 input = sys.stdin.readline
 
 def find_parent(parent,x):
@@ -14,13 +13,8 @@ def union_parent(parent,a,b):
         parent[b] = a
     else:
         parent[a] = b
-    
-
-
 
 v,e = map(int,input().split())
-graph = [[] for _ in range(v+1)]
-dist = [False]*(v+1)
 edges = []
 parent = [i for i in range(v+1)]
 ans = 0
