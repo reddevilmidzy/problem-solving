@@ -13,9 +13,7 @@ for i in range(1,n+1):
     cost.append(nums[0])
     for j in range(2,nums[1]+2):
         deg[i] += 1
-        #print('i',i,'j',j)
         graph[nums[j]].append(i)
-
 
 for i in range(1,n+1):
     if deg[i] == 0:
