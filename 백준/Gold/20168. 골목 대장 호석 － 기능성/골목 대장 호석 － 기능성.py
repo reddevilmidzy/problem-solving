@@ -1,13 +1,11 @@
+# 백트래킹 풀이
 import sys
 input =sys.stdin.readline
 
 def dfs(start,arr,won,visited):
-    #print(start,arr)
     if start==b:
-        #arr.sort(reverse =True)
         candi.append(sorted(arr.copy())[-1])
-        # print('arr',arr)
-        #return
+
     for nex,mon in graph[start]:
         if mon<=won and not visited[nex]:
             arr.append(mon)
@@ -19,9 +17,7 @@ def dfs(start,arr,won,visited):
 
 n,m,a,b,c = map(int,input().split())
 h = []
-# heapq.heappush(h, (a,0))
 graph = [[] for _ in range(n+1)]
-takeit = [0]*(n+1)
 visited = [False]*(n+1)
 visited[a] = True
 candi = []
