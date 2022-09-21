@@ -1,28 +1,5 @@
-# from collections import deque
-# import heapq
 import sys
 input =sys.stdin.readline
-
-# INF = int(1e9)
-
-# def dijkstra(start,end):
-#     q = []
-#     heapq.heappush(q, (0, start,c))
-#     dist = [INF]*(n+1)
-#     dist[start] = 0
-#     while q:
-#         cost,node,now = heapq.heappop(q)
-#         if cost>dist[node]:
-#             continue
-#         if cost>now:
-#             continue
-
-#         for nex,mon in graph[node]:
-#             if dist[node]+mon < dist[nex]:
-#                 dist[nex] = dist[node]+mon
-#                 heapq.heappush(q,(mon,nex))
-#     return dist
-
 
 def dfs(start,arr,won,visited):
     #print(start,arr)
