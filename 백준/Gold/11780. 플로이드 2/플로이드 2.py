@@ -13,7 +13,8 @@ for i in range(1, n+1):
 
 for _ in range(m):
     a,b,c = map(int,input().split())
-    graph[a][b] = min(graph[a][b], c)
+    if graph[a][b] > c:
+        graph[a][b] = c
 
 
 for x in range(1, n+1):
@@ -21,19 +22,13 @@ for x in range(1, n+1):
         for j in range(1, n+1):
             if graph[i][x]+graph[x][j] < graph[i][j]:
                 graph[i][j] = graph[i][x]+graph[x][j]
-                route[i][j] = []
-                for k in range(len(route[i][x])):
-                    route[i][j].append(route[i][x][k])
-                route[i][j].append(x)
-                for l in range(len(route[x][j])):
-                    route[i][j].append(route[x][j][l])
-
+                
+                route[i][j] = route[i][x][:] + [x] + route[x][j][:]
 
 for i in range(1, n+1):
     for j in range(1, n+1):
         print(graph[i][j] if graph[i][j] != INF else 0, end=' ')
     print()
-#    print(*graph[i][1:])
 
 for i in range(1,n+1):
     for j in range(1,n+1):
