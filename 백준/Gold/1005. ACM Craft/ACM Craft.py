@@ -20,7 +20,6 @@ def topology(graph, w):
         
     return ans[w]
 
-
 for _ in range(int(input())):
     n,k = map(int,input().split())
     cost = [0]+list(map(int,input().split()))
@@ -32,4 +31,3 @@ for _ in range(int(input())):
         graph[x].append(y)
     w = int(input())
     print(topology(graph,w))
-    # print(graph, dag)
