@@ -38,11 +38,12 @@ def run(a,b):
                 queue.append([nx,ny,cnt+1])
                 visited[nx][ny]=-1
     return "IMPOSSIBLE"
+
 r,c = map(int,input().split())
 graph = [list(map(str,input().rstrip())) for _ in range(r)]
 visited = [[0]*(c) for _ in range(r)]
 fire = deque()
-# print(graph)
+
 for i in range(r):
     for j in range(c):
         if graph[i][j] == 'F':
