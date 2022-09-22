@@ -9,7 +9,7 @@ def burn():
     while fire:
         a,b,t = fire.popleft()
         visited[a][b] = t
-        
+
         for i in range(4):
             nx = dx[i] + a
             ny = dy[i] + b
@@ -21,13 +21,9 @@ def burn():
     return visited
 
 
-def run(a,b):
-    queue = deque()
-    queue.append([a,b,1])
+def run():
     while queue:
         x,y,cnt = queue.popleft()
-        if x==r-1 or x==0 or y==c-1 or y==0:
-            return cnt
         for i in range(4):
             nx = x+dx[i]
             ny = y+dy[i]
@@ -37,21 +33,27 @@ def run(a,b):
             if visited[nx][ny] == 0 or visited[nx][ny] > cnt+1 and visited[nx][ny] != -1:
                 queue.append([nx,ny,cnt+1])
                 visited[nx][ny]=-1
+                if nx==r-1 or nx==0 or ny==c-1 or ny==0:
+                    return cnt+1
+                
     return "IMPOSSIBLE"
 
 r,c = map(int,input().split())
 graph = [list(map(str,input().rstrip())) for _ in range(r)]
 visited = [[0]*(c) for _ in range(r)]
 fire = deque()
-
+queue = deque()
 for i in range(r):
     for j in range(c):
         if graph[i][j] == 'F':
             fire.append([i,j,1])
         elif graph[i][j] == 'J':
-            x,y = i,j
+            if i==0 or i==r-1 or j==0 or j==c-1:
+                print(1)
+                exit()
+            queue.append([i,j,1])
         elif graph[i][j] == '#':
             visited[i][j] = -1
 
 burn()
-print(run(x,y))
+print(run())
