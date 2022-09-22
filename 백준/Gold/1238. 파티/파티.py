@@ -4,13 +4,16 @@ input = sys.stdin.readline
 INF = int(1e9)
 
 v,e,x = map(int,input().rstrip().split())
-graph = [[] for _ in range(v+1)]
+go_graph = [[] for _ in range(v+1)]
+back_graph = [[] for _ in range(v+1)]
 
 for _ in range(e):
     a,b,dis = map(int,input().rstrip().split())
-    graph[a].append([b,dis])
+    go_graph[a].append([b,dis])
+    back_graph[b].append([a,dis])
+    
 
-def dijkstra(start):
+def dijkstra(start,graph):
     q = []
     distance = [INF]*(v+1)
 
@@ -30,11 +33,11 @@ def dijkstra(start):
 
     return distance
 
-
 result = 0
+go =dijkstra(x,go_graph)
+back= dijkstra(x,back_graph)
 for i in range(1, v + 1):
-    go = dijkstra(i)
-    back = dijkstra(x)
-    result = max(result, go[x] + back[i])
+    if result < go[i]+back[i]:
+        result = go[i]+back[i]
 
 print(result)
