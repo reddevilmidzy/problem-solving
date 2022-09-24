@@ -22,9 +22,8 @@ for x in range(1,n+1):
 ans = 0         
 for i in range(1,n+1):
     for j in range(1,n+1):
-        if graph[i][j]==INF:
-            if graph[j][i]==INF:
-                break
+        if graph[i][j]==INF and graph[j][i]==INF:
+            break
     else:
         ans += 1
 print(ans)
