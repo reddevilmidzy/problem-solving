@@ -5,7 +5,6 @@ n = int(input())
 nums = list(map(int,input().split()))
 dp = [[0]*(n) for _ in range(n)]
 
-
 # for i in range(n):
 #     dp[i][i] = 1
 
@@ -19,8 +18,6 @@ for i in range(n):
                 dp[start][end]=1
             elif dp[start+1][end-1] == 1:
                 dp[start][end] = 1
-
-
 
 m = int(input())
 for _ in range(m):
