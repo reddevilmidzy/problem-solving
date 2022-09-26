@@ -1,3 +1,4 @@
+# 이문제는 다익보다 BFS 가 better
 import sys
 from collections import deque
 input = sys.stdin.readline
