@@ -1,39 +1,30 @@
 from collections import deque
-
-n = int(input())
-
-a, b, x, y = map(int, input().split())
-
-graph = [[-1]*n for _ in range(n)]
+import sys
+input = sys.stdin.readline
 
 dx = [-2,-2,0,0,2,2]
-
 dy = [-1,1,-2,2,-1,1]
 
-def solution (a, b) :
+def bfs(a:int,b:int)-> int:
+    visited = [[-1]*n for _ in range(n)]
+    queue = deque()
+    queue.append([a,b])
+    visited[a][b] = 0
+    while queue:
+        r,c = queue.popleft()
+        
+        for i in range(6):
+            nx = r+dx[i]
+            ny = c+dy[i]
 
-    q = deque()
+            if nx < 0 or ny < 0 or nx >= n or ny >= n:
+                continue
+            if visited[nx][ny] == -1:
+                queue.append([nx,ny])
+                visited[nx][ny] = visited[r][c] + 1
+    return visited[r2][c2]
 
-    q.append([a,b])
+n =int(input())
+r1,c1,r2,c2 = map(int,input().split())
 
-    graph[b][a] = 0
-
-    while q:
-
-        here = q.popleft();
-
-        for i in range(6) :
-
-            nx = here[0] + dx[i]
-
-            ny = here[1] + dy[i]
-
-            if (nx >= 0 and ny >= 0 and nx < n and ny < n) and graph[ny][nx] == -1 :
-
-                q.append([nx, ny])
-
-                graph[ny][nx] = graph[here[1]][here[0]] + 1
-
-solution(a,b)
-
-print(graph[y][x])
+print(bfs(r1,c1))
