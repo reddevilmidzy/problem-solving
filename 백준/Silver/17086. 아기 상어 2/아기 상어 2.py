@@ -20,8 +20,8 @@ def bfs(q):
             if visited[nx][ny]==-1:
                 q.append([nx,ny,cnt+1])
                 visited[nx][ny] = cnt+1
-            elif visited[nx][ny] > cnt:
-                visited[nx][ny] = cnt+1
+#            elif visited[nx][ny] > cnt:
+#                visited[nx][ny] = cnt+1
 
 
 n,m = map(int,input().split())
