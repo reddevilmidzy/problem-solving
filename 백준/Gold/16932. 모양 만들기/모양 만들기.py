@@ -13,7 +13,7 @@ dic = dict()
 # 1갯수 각각 도형에 카운트
 # 마지막에는 0만 찾아 다니면서 상하좌우 1의 조각 갯수 더함
 
-def bfs(a: int,b: int,c: int,pos: int)-> int:
+def bfs(a,b,c,pos):
     queue = deque()
     queue.append([a,b,c])
     visited[a][b] = pos
@@ -37,12 +37,11 @@ stk = []
 for i in range(n):
     for j in range(m):
         if graph[i][j] == 1 and visited[i][j] == 0:
-            tmp = bfs(i,j,1,idx)
-            dic[idx] = tmp
+            dic[idx] = bfs(i,j,1,idx)
             idx += 1
         elif graph[i][j] == 0:
             stk.append([i,j])
-really = []
+res = 0
 for i,j in stk:
     four = 0
     pre = []
@@ -56,6 +55,6 @@ for i,j in stk:
             four += dic[level]
             pre.append(level)
         #print('four', four)
-    really.append(four)
-# print(dic)
-print(max(really)+1)
+    if res < four+1:
+        res = four+1
+print(res)
