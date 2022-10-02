@@ -1,10 +1,10 @@
-# [Silver I] N번째 큰 수 - 2075 
+# [Silver II] N번째 큰 수 - 2075 
 
 [문제 링크](https://www.acmicpc.net/problem/2075) 
 
 ### 성능 요약
 
-메모리: 32908 KB, 시간: 1260 ms
+메모리: 32908 KB, 시간: 1152 ms
 
 ### 분류
 
