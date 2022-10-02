@@ -12,4 +12,5 @@ for _ in range(n):
                 # 메모리 초과 방지를 위해
                 heapq.heappop(h)
                 heapq.heappush(h, i)
+                
 print(heapq.heappop(h))
