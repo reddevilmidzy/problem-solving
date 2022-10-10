@@ -2,7 +2,7 @@
 
 [문제 링크](https://www.acmicpc.net/problem/16975)
 
-### 성능 요햑
+### 성능 요약
 
 메모리: 136116 KB, 시간: 808 ms
 
