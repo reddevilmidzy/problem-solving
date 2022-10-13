@@ -5,6 +5,7 @@ def back_tracking(index, sum):
         if min_ans > sum:min_ans = sum
         if max_ans < sum:max_ans = sum
         return
+    
     for i in range(4):
         tmp = sum
         if operator[i]==0: continue # 연산자가 없다면 건너띔
