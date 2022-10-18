@@ -2,7 +2,6 @@ from collections import defaultdict
 import sys
 input = sys.stdin.readline
 
-
 n = int(input())
 word_dict = defaultdict(int)
 name_dict = defaultdict(set)
@@ -18,20 +17,15 @@ for _ in range(n):
 ans = sorted(word_dict.items(), key=lambda x:x[1], reverse=True)
 
 per = len(person)
-all_clear = False
 
 res = []
 for key, val in ans:
     if len(name_dict[key])==per:
         res.append((key, val))
-        all_clear = True
 
-
-
-if not all_clear:
+if res == []:
     print("ALL CLEAR")
 else:
     result = sorted(res, key=lambda x:(-x[1], x[0]))
-    #print('res', result)
     for i in range(len(result)):
         print(result[i][0])
