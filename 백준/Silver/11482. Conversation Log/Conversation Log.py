@@ -14,18 +14,15 @@ for _ in range(n):
     for i in range(len(word)):
         name_dict[word[i]].add(name)
         word_dict[word[i]] += 1
-ans = sorted(word_dict.items(), key=lambda x:x[1], reverse=True)
+ans = sorted(word_dict.items(), key=lambda x:(-x[1],x[0]))
 
 per = len(person)
+all_clear = False
 
-res = []
 for key, val in ans:
     if len(name_dict[key])==per:
-        res.append((key, val))
+        print(key)
+        all_clear = True
 
-if res == []:
+if not all_clear:
     print("ALL CLEAR")
-else:
-    result = sorted(res, key=lambda x:(-x[1], x[0]))
-    for i in range(len(result)):
-        print(result[i][0])
