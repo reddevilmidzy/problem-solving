@@ -18,13 +18,12 @@ def union(parent, a, b):
 n,m = map(int,input().split())
 
 parent = [i for i in range(n)]
-flag = False
 ans = 0
 for i in range(1, m+1):
     u, v = map(int,input().split())
     if find(parent, u) != find(parent, v):
         union(parent, u, v)
-    elif not flag:
+    else:
         ans = i
-        flag = True
+        break
 print(ans)
