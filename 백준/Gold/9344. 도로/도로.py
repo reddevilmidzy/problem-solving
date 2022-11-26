@@ -14,8 +14,6 @@ def union(parent, a, b):
         parent[b] = a
     else:
         parent[a] = b
-    
-
 
 t = int(input())
 for _ in range(t):
@@ -28,8 +26,8 @@ for _ in range(t):
     edges.sort()
     edge = 0
     for w,u,v in edges:
-        if min(u,v) == min(p,q) and max(u,v) == max(p,q):
-            if edge == n-1:
+        if edge == n-1:
+            if min(u,v) == min(p,q) and max(u,v) == max(p,q):
                 print("NO")
                 break
         if find(parent, u) != find(parent, v):
