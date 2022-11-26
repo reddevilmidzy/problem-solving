@@ -1,11 +1,10 @@
 import sys
-sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
 def find(parent, x):
-    if parent[x] != x:
-        parent[x] = find(parent, parent[x])
-    return parent[x]
+    while x != parent[x]:
+        x = parent[x]
+    return x
 
 g = int(input())
 p = int(input())
@@ -14,6 +13,8 @@ ans = 0
 for i in range(p):
     gi = int(input())
     gi_parent = find(parent, gi)
+    parent[gi] = gi_parent
+    
     if gi_parent == 0:
         break
     parent[gi_parent] = gi_parent-1
