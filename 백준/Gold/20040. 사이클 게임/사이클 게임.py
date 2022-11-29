@@ -24,6 +24,6 @@ for i in range(1, m+1):
     if find(parent, u) != find(parent, v):
         union(parent, u, v)
     else:
-        ans = i
-        break
+        print(i)
+        exit()
 print(ans)
