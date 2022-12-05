@@ -8,7 +8,7 @@
 
 ### 분류
 
-그래프 이론(graphs), 그리디 알고리즘(greedy), 구현(implementation)
+그리디 알고리즘(greedy), 정렬(sorting)
 
 ### 문제 설명
 
