@@ -1,4 +1,4 @@
-# [Bronze III] 그대로 출력하기 - 11718 
+# [Bronze V] 그대로 출력하기 - 11718 
 
 [문제 링크](https://www.acmicpc.net/problem/11718) 
 
