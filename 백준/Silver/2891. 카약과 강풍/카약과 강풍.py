@@ -2,8 +2,8 @@ import sys
 input = sys.stdin.readline
 
 n,s,r = map(int, input().split())
-broke = sorted(list(map(int,input().split())))
-redun = sorted(list(map(int,input().split())))
+broke = list(map(int,input().split()))
+redun = list(map(int,input().split()))
 broke, redun = list(set(broke)-set(redun)), list(set(redun)-set(broke))
 
 ans = 0
