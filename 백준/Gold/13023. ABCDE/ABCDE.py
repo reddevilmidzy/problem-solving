@@ -20,7 +20,6 @@ for _ in range(m):
     a,b= map(int,input().rstrip().split())
     graph[a].append(b)
     graph[b].append(a)
-#print(graph)
 if m >= 4:
     for node in range(n):
         visited = [False] * n
