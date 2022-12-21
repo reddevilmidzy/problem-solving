@@ -11,11 +11,9 @@ for _ in range(m):
     graph[a][b] = min(graph[a][b], c)
     graph[b][a] = min(graph[b][a], c)
 
-for k in range(1, n+1):
-    graph[k][k] = 0
-    route[k][k] = "-"
-
 for x in range(1, n+1):
+    graph[x][x] = 0
+    route[x][x] = "-"
     for i in range(1, n+1):
         for j in range(1, n+1):
             if graph[i][x] + graph[x][j] < graph[i][j]:
