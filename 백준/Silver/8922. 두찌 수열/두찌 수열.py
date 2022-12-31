@@ -6,7 +6,7 @@ for _ in range(t):
     n = int(input())
     nums = list(map(int,input().split()))
     cnt = 0
-    while cnt < 100:
+    while cnt < 33:
         tmp = [[] for _ in range(n)]
         for i in range(n):
             tmp[i] = abs(nums[i] - nums[i-1])
