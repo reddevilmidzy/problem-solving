@@ -11,8 +11,6 @@ for i in nums:
 
 for i in range(1, 4):
     for j in range(i*m, n+1):
-        if n == 1:
-            dp[i][j] = max(dp[i][j-1], pre_fix[j] - pre_fix[j-m])
-        else:
-            dp[i][j] = max(dp[i][j-1], dp[i-1][j-m] + pre_fix[j]-pre_fix[j-m])
+        dp[i][j] = max(dp[i][j-1], dp[i-1][j-m] + pre_fix[j]-pre_fix[j-m])
+
 print(dp[3][n])
