@@ -10,13 +10,11 @@ res = set()
 
 for i in range(n):
     for j in range(m):
-        
         #  세개 쭉 그은 다음, 찾기
         if i+2<n:
             now = 0
             for k in range(3):
                 now += graph[i+k][j]
-
             if i+3<n:
                 res.add(now+graph[i+3][j])
             if j+1<m:
@@ -48,7 +46,6 @@ for i in range(n):
         if i+1<n and j+1<m:
             now = graph[i][j]+graph[i+1][j]+graph[i][j+1]+graph[i+1][j+1]
             res.add(now)
-        
         if i+1<n and 0<j<m-1:
             now = graph[i][j]+graph[i+1][j]
             res.add(now+graph[i][j+1]+graph[i+1][j-1])
@@ -57,5 +54,5 @@ for i in range(n):
             now = graph[i][j]+graph[i][j+1]
             res.add(now+graph[i+1][j]+graph[i-1][j+1])
             res.add(now+graph[i-1][j]+graph[i+1][j+1])
-                
+
 print(max(res))
