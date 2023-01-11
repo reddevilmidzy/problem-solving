@@ -29,16 +29,11 @@ graph = [list(map(int,input().split())) for _ in range(n)]
 visited = [[-1]*n for _ in range(n)]
 S,X,Y = map(int,input().split())
 queue = deque()
-tmp = []
 for i in range(n):
     for j in range(n):
         if graph[i][j] != 0:
-            tmp.append([graph[i][j],i,j])
-tmp.sort(key=lambda x: (x[0]))
-
-for a,b,c in tmp:
-    queue.append([b,c,0,a])
-    visited[b][c] = 0
+            queue.append([i,j,0,graph[i][j]])
+            visited[i][j] = 0
 
 bfs()
 
