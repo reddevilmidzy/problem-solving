@@ -1,33 +1,54 @@
-import heapq
-import sys
+import heapq, sys
 input = sys.stdin.readline
-INF = int(1e9)
 
+def dijkstra(max_cash):
+    pq = []
+    for i in range(n):
+        dist[i] = -1
+    dist[a] = 0
+    heapq.heappush(pq, (0, a))
 
-def dijkstra(start, end):
-    distance[start] = 0
-    hq = []
-    heapq.heappush(hq, (0, start))
-
-    while hq:
-        dist, now = heapq.heappop(hq)
-        if distance[now] < dist:
+    while pq:
+        now_node = heapq.heappop(pq)
+        if dist[now_node[1]] != now_node[0]:
             continue
-        for nex, cost in graph[now]:
-            if dist + cost < distance[nex] and dist + cost <= c:
-                distance[nex] = dist + cost
-                max_coin[nex] = max(max_coin[nex], cost)
-                heapq.heappush(hq, (dist+cost, nex))
-    return max_coin[end] if max_coin[end] else -1
+        for next_node in graph[now_node[1]]:
+            if next_node[1] <= max_cash and (dist[next_node[0]] == -1 or dist[next_node[0]] > now_node[0] + next_node[1]):
+                dist[next_node[0]] = now_node[0] + next_node[1]
+                heapq.heappush(pq, (dist[next_node[0]], next_node[0]))
+    return dist[b] != -1 and dist[b] <= c
 
+line = input().split()
+n = int(line[0])
+m = int(line[1])
+a = int(line[2])
+b = int(line[3])
+c = int(line[4])
 
-n, m, a, b, c = map(int, input().split())
-distance = [INF] * (n+1)
-max_coin = [0] * (n+1)
-graph = [[] for _ in range(n + 1)]
-for _ in range(m):
-    u, v, w = map(int, input().split())
-    graph[u].append([v, w])
-    graph[v].append([u, w])
+a -= 1
+b -= 1
+graph = [[] for _ in range(n)]
+dist = [0] * n
+for i in range(m):
+    line = input().split()
+    x = int(line[0])
+    y = int(line[1])
+    cash = int(line[2])
+    x -= 1
+    y -= 1
+    graph[x].append((y, cash))
+    graph[y].append((x, cash))
 
-print(dijkstra(a, b))
+start = 0
+end = 1000000007
+answer = -1
+while start < end:
+    mid = (start + end) // 2
+    if dijkstra(mid):
+        answer = end = mid
+    elif start == mid:
+        break
+    else:
+        start = mid
+
+print(answer)
