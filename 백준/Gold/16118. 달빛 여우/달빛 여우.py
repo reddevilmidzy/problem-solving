@@ -2,7 +2,7 @@ import sys, heapq
 input = sys.stdin.readline
 
 INF = int(1e9)
-def dijkstra():
+def dij_fox():
     distance = [INF]*(n+1)
     distance[1] = 0
     hq = []
@@ -16,7 +16,6 @@ def dijkstra():
                 distance[nex] = dist+cost
                 heapq.heappush(hq, (cost+dist, nex))
     return distance[2:]
-    
 
 def dij_wolf():
     distance = [[INF]*(2) for _ in range(n+1)]
@@ -35,8 +34,6 @@ def dij_wolf():
             elif run==0 and distance[nex][1]>dist+(cost*2):
                 distance[nex][1] = dist+(cost*2)
                 heapq.heappush(hq, ((cost*2)+dist, nex, 1))
-
-
     return distance[2:]
 
 def result(a,b):
@@ -45,7 +42,6 @@ def result(a,b):
         if a[i]<min(b[i]):
             res += 1
     return res
-
 
 n,m = map(int,input().split())
 graph = [[] for _ in range(n+1)]
@@ -56,7 +52,7 @@ for _ in range(m):
     graph[a].append((b,d))
     graph[b].append((a,d))
 
-fox = dijkstra()
+fox = dij_fox()
 wolf = dij_wolf() 
 
 print(result(fox,wolf))
