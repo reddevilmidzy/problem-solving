@@ -8,8 +8,6 @@ dy = [1,0,0,-1,-1,1,1,-1]
 def bfs(q):
     while q:
         x,y,cnt = q.popleft()
-        # visited[x][y] = cnt
-
         for i in range(8):
             nx = x+dx[i]
             ny = y+dy[i]
@@ -20,9 +18,6 @@ def bfs(q):
             if visited[nx][ny]==-1:
                 q.append([nx,ny,cnt+1])
                 visited[nx][ny] = cnt+1
-#            elif visited[nx][ny] > cnt:
-#                visited[nx][ny] = cnt+1
-
 
 n,m = map(int,input().split())
 graph = [list(map(int,input().split())) for _ in range(n)]
@@ -33,9 +28,9 @@ for i in range(n):
         if graph[i][j] == 1:
             queue.append([i,j,0])
             visited[i][j] = 0
-
 bfs(queue)
 ans = 0
+
 for i in visited:
     if ans < max(i):
         ans = max(i)
