@@ -1,11 +1,8 @@
 import sys
 input = sys.stdin.readline
 
-graph = []
 n = int(input().rstrip())
-
-for i in range(n):
-    graph.append(list(map(int, input().rstrip())))
+graph = [list(map(int,input().rstrip())) for _ in range(n)]
 
 def dfs(x,y):
     global cnt
