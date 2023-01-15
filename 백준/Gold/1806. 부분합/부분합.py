@@ -3,11 +3,9 @@ input = sys.stdin.readline
 
 n,s = map(int,input().split())
 nums = list(map(int,input().split()))
-
 pre_fix = [0]
 for num in nums:
     pre_fix.append(num+pre_fix[-1])
-
 st,ed = 0,1
 ans = 100001
 while ed <= n:
