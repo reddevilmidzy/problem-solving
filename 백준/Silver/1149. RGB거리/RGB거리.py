@@ -1,6 +1,5 @@
 import sys
 input = sys.stdin.readline
-
 n = int(input())
 colors = [list(map(int,input().rstrip().split())) for _ in range(n)]
 for i in range(1,n):
