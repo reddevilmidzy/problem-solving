@@ -6,7 +6,6 @@ h = []
 ans = 0
 i,j = 0,0
 [heapq.heappush(h,int(input().rstrip())) for _ in range(n)]
-
 while h:
     if i > 2:
         heapq.heappush(h, j)
