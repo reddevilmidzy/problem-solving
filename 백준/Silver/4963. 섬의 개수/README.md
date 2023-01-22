@@ -4,17 +4,17 @@
 
 ### 성능 요약
 
-메모리: 32476 KB, 시간: 112 ms
+메모리: 34120 KB, 시간: 68 ms
 
 ### 분류
 
-너비 우선 탐색(bfs), 깊이 우선 탐색(dfs), 그래프 이론(graphs), 그래프 탐색(graph_traversal)
+그래프 이론(graphs), 그래프 탐색(graph_traversal), 너비 우선 탐색(bfs), 깊이 우선 탐색(dfs)
 
 ### 문제 설명
 
 <p>정사각형으로 이루어져 있는 섬과 바다 지도가 주어진다. 섬의 개수를 세는 프로그램을 작성하시오.</p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/images/island.png" style="width: 283px; height: 141px;"></p>
+<p><img alt="" src="" style="width: 283px; height: 141px;"></p>
 
 <p>한 정사각형과 가로, 세로 또는 대각선으로 연결되어 있는 사각형은 걸어갈 수 있는 사각형이다. </p>
 
