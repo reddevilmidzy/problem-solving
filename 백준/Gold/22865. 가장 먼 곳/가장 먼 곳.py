@@ -21,21 +21,24 @@ def dijkstra(start):
     return distance
 
 n = int(input())
-a,b,c = map(int,input().split())
+nums = list(set(map(int,input().split())))
 graph = [[] for _ in range(n+1)]
 m = int(input())
-ans = 0
-
+distance_list = []
 for _ in range(m):
     u,v,w = map(int,input().split())
     graph[u].append((v,w))
     graph[v].append((u,w))
 
-a_dist = dijkstra(a)
-b_dist = dijkstra(b)
-c_dist = dijkstra(c)
+for i in nums:
+    distance_list.append(dijkstra(i))
 
 ans = [0]
+
 for i in range(1, n+1):
-    ans.append(min(a_dist[i], b_dist[i], c_dist[i]))
+    tmp = INF
+    for j in range(len(nums)):
+        tmp = min(tmp, distance_list[j][i])
+    ans.append(tmp)
+
 print(ans.index(max(ans)))
