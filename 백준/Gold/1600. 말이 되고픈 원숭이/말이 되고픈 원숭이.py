@@ -1,7 +1,6 @@
 from collections import deque
 import sys
 input = sys.stdin.readline
-INF = int(1e9)
 
 dx = [0,1,0,-1]
 dy = [1,0,-1,0]
@@ -11,7 +10,6 @@ hy = [-1,1,-1,1,2,2,-2,-2]
 
 def bfs(a,b,c):
     queue = deque()
-    # 좌표, cnt
     queue.append([a,b,c,0])
     visited[c][a][b] = True
     
