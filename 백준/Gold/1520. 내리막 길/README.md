@@ -1,4 +1,4 @@
-# [Gold IV] 내리막 길 - 1520 
+# [Gold III] 내리막 길 - 1520 
 
 [문제 링크](https://www.acmicpc.net/problem/1520) 
 
