@@ -2,13 +2,13 @@ from collections import deque
 import sys
 input = sys.stdin.readline
 
-dx = [1,0,-1,0]
-dy = [0,1,0,-1]
+dx = [1,-1,0,0]
+dy = [0,0,-1,1]
 
 def bfs(a,b,c):
     queue = deque()
     queue.append([a,b,c])
-    visited[a][b][k] = 1
+    visited[a][b][c] = 1
     while queue:
         x,y,v = queue.popleft()
         if x == n-1 and y == m-1:
@@ -25,8 +25,7 @@ def bfs(a,b,c):
             if graph[nx][ny] == 0 and visited[nx][ny][v] == 0:
                 visited[nx][ny][v] = visited[x][y][v]+1
                 queue.append([nx,ny,v])
-
-    return -1
+    return -1 # 불가능
 
 n,m,k = map(int,input().split())
 graph = [list(map(int,input().rstrip())) for _ in range(n)]
