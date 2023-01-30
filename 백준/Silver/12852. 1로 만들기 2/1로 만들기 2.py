@@ -1,25 +1,29 @@
-from collections import deque
 n = int(input())
+#dp = [0] *(10**6+1)
+dp = [0]*(n+1)
+way = [[] for _ in range(n+1)]
+way[1] = [1]
+# print(way)
+for i in range(2, n+1):
+    #print(way)
+    two = False
+    three = False
+    way[i] = way[i-1][:]+[way[i-1][-1]+1]
 
-def bfs():
-    queue = deque()
-    queue.append([1,0,[1]]) # now, cnt
-    visited = [False] * (n+1)
-    while queue:
-        x,cnt,way = queue.popleft()
-        if x == n:
-            print(cnt)
-            print(*reversed(way), sep=' ')
-            return
+    dp[i] = dp[i-1]+1
+    if i%2 ==0 and dp[i//2]<dp[i]:
+        dp[i] = dp[i//2]+1
+        two = True
+    if i%3 ==0 and dp[i//3]<dp[i]:
+        dp[i] = dp[i//3]+1
+        two = False
+        three = True
+    
+    if two:
+        way[i] = way[i//2][:]+[way[i//2][-1]*2]
+    elif three:
+        way[i] = way[i//3][:]+[way[i//3][-1]*3]
+
         
-        if x+1 <= n and not visited[x+1]:
-            queue.append([x+1, cnt+1,way+[x+1]])
-            visited[x+1] = True
-            
-        if x*3 <= n and not visited[x*3]:
-            queue.append([x*3, cnt+1, way+[x*3]])
-            visited[x*3] = True
-        if x*2 <= n and not visited[x*2]:
-            queue.append([x*2, cnt+1, way+[x*2]])
-            visited[x*2] = True
-bfs()
+print(dp[n])
+print(*reversed(way[n]))
