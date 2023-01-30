@@ -37,7 +37,6 @@ while True:
     for _ in range(L):
         graph.append([list(map(str,input().rstrip())) for __ in range(R)])
         input()
-    
     for i in range(L):
         for j in range(R):
             for k in range(C):
