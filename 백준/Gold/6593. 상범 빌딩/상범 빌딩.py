@@ -7,7 +7,14 @@ dx = [0,1,0,-1,0,0]
 dy = [1,0,-1,0,0,0]
 dz = [0,0,0,0,1,-1]
 
-def bfs(l, r, c):
+def solve(L: int, R: int, C: int) -> str:
+    for i in range(L):
+        for j in range(R):
+            for k in range(C):
+                if graph[i][j][k] == "S":
+                    return bfs(i,j,k)
+
+def bfs(l:int, r:int, c:int) -> str:
     queue = deque()
     queue.append((l,r,c))
     visited = [[[0]*C for _ in range(R)] for __ in range(L)]
@@ -33,18 +40,7 @@ while True:
     if L+R+C == 0:
         break
     graph = []
-    flag = False
     for _ in range(L):
         graph.append([list(map(str,input().rstrip())) for __ in range(R)])
         input()
-    for i in range(L):
-        for j in range(R):
-            for k in range(C):
-                if graph[i][j][k] == "S":
-                    print(bfs(i,j,k))
-                    flag = True
-                    break
-            if flag:
-                break
-        if flag:
-            break
+    print(solve(L,R,C))
