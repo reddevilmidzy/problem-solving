@@ -8,11 +8,11 @@ heapq.heappush(room, 1)
 
 for st, ed in task:
     
-    ed_time = heapq.heappop(room)
-    if ed_time <= st:
+    if room[0] <= st:
+        heapq.heappop(room)
         heapq.heappush(room, ed)
     else:
-        heapq.heappush(room, ed_time)
+        # heapq.heappush(room, ed_time)
         heapq.heappush(room, ed)
 
 print(len(room))
