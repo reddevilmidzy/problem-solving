@@ -2,6 +2,8 @@ import sys
 input = sys.stdin.readline
 
 def euler_phi(n):
+    if n == 1:
+        return 0
     i = 2
     ret = n
     while i*i <= n:
