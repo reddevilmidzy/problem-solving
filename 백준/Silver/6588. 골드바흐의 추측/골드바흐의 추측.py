@@ -2,7 +2,7 @@ import sys
 input = sys.stdin.readline
 
 prime_list = [False, False] + [True]*999999
-for i in range(2,1000001):
+for i in range(2,int(1000001**0.5)):
     if prime_list[i] == True:
         for j in range(i*2, 1000001, i):
             prime_list[j] = False
