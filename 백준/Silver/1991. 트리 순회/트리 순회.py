@@ -25,7 +25,6 @@ def postorder(root): # 후위 순회
         postorder(tree[root][1])
         print(root, end='')
 
-
 preorder('A')
 print()
 inorder('A')
