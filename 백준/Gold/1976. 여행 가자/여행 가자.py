@@ -15,7 +15,6 @@ def union_parent(parent, a,b):
     else:
         parent[a] = b
 
-
 n = int(input())
 m = int(input())
 graph = [list(map(int,input().split())) for _ in range(n)]
@@ -26,7 +25,6 @@ for i in range(n):
     for j in range(i+1):
         if graph[i][j] == 1:
             union_parent(parent, i, j)
-
 
 pre = find_parent(parent, nums[0]-1)
 
