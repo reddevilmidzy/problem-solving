@@ -1,14 +1,13 @@
 import sys
 input = sys.stdin.readline
 
-n=  int(input())
+n = int(input())
 nums= list(map(int,input().split()))
 
 arr = [0]*n
 idx = 1
 
 for i in nums:
-    #print(arr)
     now = i
     for j in range(n):
         if arr[j] == 0:
