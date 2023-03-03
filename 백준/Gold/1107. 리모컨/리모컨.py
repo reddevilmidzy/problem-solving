@@ -13,7 +13,6 @@ elif m == 0:
     candi.append(len(str(n)))
 elif m == 10:
     map(int,input().rstrip().split())
-
 else:
     breakup = set(map(int,input().split()))
     if len(str(n)) == 1 and n not in breakup:
