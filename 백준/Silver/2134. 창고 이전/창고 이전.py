@@ -1,3 +1,5 @@
+# 시간복잡도
+# O(n+m)
 import sys
 input = sys.stdin.readline
 
@@ -12,7 +14,6 @@ while a_idx < n and b_idx < m:
     if pre[a_idx] == 0:
         a_idx += 1
         continue
-
     elif aft[b_idx] == 0:
         b_idx += 1
         continue
@@ -30,8 +31,6 @@ while a_idx < n and b_idx < m:
     elif pre[a_idx] == aft[b_idx]:
         load += aft[b_idx]
         cost += (a_idx + 1 + b_idx + 1) * pre[a_idx]
-        pre[a_idx] = 0
-        aft[b_idx] = 0
         a_idx += 1
         b_idx += 1
 
