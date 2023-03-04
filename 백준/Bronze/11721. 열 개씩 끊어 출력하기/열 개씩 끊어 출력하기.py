@@ -1,3 +1,3 @@
-char = input()
-for i in range(len(char)//10+1):
-    print(char[i*10:i*10+10])
+c = input()
+for i in range(0,len(c),10):
+    print(c[i:i+10])
