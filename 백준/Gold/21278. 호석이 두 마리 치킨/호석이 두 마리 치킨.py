@@ -33,5 +33,4 @@ for x in range(1, n+1):
             ans[tot] = [x, y]
 
 key = min(ans.keys())
-
 print(*ans[key], key, sep=' ')
