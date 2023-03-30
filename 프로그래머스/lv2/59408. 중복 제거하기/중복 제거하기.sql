@@ -1,1 +1,1 @@
-SELECT count(distinct NAME) as count_id FROM ANIMAL_INS
+SELECT count(distinct NAME) as "count" FROM ANIMAL_INS
