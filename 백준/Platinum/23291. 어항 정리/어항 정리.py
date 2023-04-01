@@ -25,7 +25,6 @@ def stack(lis: list[list[int]]) -> list[list[int]]:
         res = turned_tmp[::] + [res[-1][idx:]]
         
     return res
-    # 다 쌓고 물고기 수 조절
 
 
 def conditioning(lis: list[list[int]]):
@@ -77,14 +76,13 @@ def levitate(lis: list[list[int]]) -> list[list[int]]:
     tmp = []
     tmp.append(lis[:n//2][::-1])
     tmp.append(lis[n//2:])
-
     res = []
     res.append(tmp[-1][:n//4][::-1])
     res.append(tmp[0][:n//4][::-1])
     res.append(tmp[0][n//4:])
     res.append(tmp[-1][n//4:])
-
     return res
+
 ans = 0
 while max(nums) - min(nums) > k:
     res = plus(nums)
