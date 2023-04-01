@@ -8,26 +8,18 @@ def plus(nums):
             nums[i] += 1
     return nums
 
-def stack(lis: list[list[int]]) -> list[list[int]]:
-    res = [[], []]
-    # 먼저 가장 왼쪽에 있는 어항을 오른쪽 어항에 올리기
-    res[0] = [lis[0]]
-    res[1] = lis[1:]
-
+def stack(lis):
+    res = [[lis[0]],lis[1:]]
     while True:
-        if len(res) > len(res[-1]) - len(res[0]):
-            break
+        if len(res) > len(res[-1]) - len(res[0]):break
         idx = len(res[0])
         tmp = []
-        for i in range(len(res)):
-            tmp.append(res[i][:idx])
-        turned_tmp = turn(tmp)
-        res = turned_tmp[::] + [res[-1][idx:]]
-        
+        for i in range(len(res)):tmp.append(res[i][:idx])
+        turned = turn(tmp)
+        res = turned[::] + [res[-1][idx:]]
     return res
 
-
-def conditioning(lis: list[list[int]]):
+def condi(lis):
     n = len(lis)
     res = [[0]*len(lis[i]) for i in range(n)]
     for i in range(len(res)):
@@ -46,24 +38,21 @@ def conditioning(lis: list[list[int]]):
                 else:
                     res[i][j] -= abs(lis[i][j] - lis[i-1][j])//5
                     res[i-1][j] += abs(lis[i][j] - lis[i-1][j])//5
-    
     for i in range(len(res)):
         for j in range(len(res[i])):
             res[i][j] += lis[i][j]
     return res
 
-def turn(lis: list[int]) -> list[int]:
+def turn(lis):
     n, m = len(lis), len(lis[0])
     res = [[0]*n for _ in range(m)]
-
     for i in range(n):
         for j in range(m):
             res[j][n - i - 1] = lis[i][j]
     return res
 
-def rematch(lis: list[list[int]]):
+def rematch(lis):
     res = []
-
     n,m = len(lis), len(lis[-1])
     for j in range(m):
         for i in range(n - 1, -1, -1):
@@ -71,27 +60,14 @@ def rematch(lis: list[list[int]]):
                 res.append(lis[i][j])
     return res
 
-def levitate(lis: list[list[int]]) -> list[list[int]]:
+def levitate(lis):
     n = len(lis)
-    tmp = []
-    tmp.append(lis[:n//2][::-1])
-    tmp.append(lis[n//2:])
-    res = []
-    res.append(tmp[-1][:n//4][::-1])
-    res.append(tmp[0][:n//4][::-1])
-    res.append(tmp[0][n//4:])
-    res.append(tmp[-1][n//4:])
-    return res
+    tmp = [lis[:n//2][::-1], lis[n//2:]]
+    return [tmp[-1][:n//4][::-1], tmp[0][:n//4][::-1], tmp[0][n//4:], tmp[-1][n//4:]]
 
 ans = 0
-while max(nums) - min(nums) > k:
-    res = plus(nums)
-    res = stack(res)
-    res = conditioning(res)
-    res = rematch(res)
-    res = levitate(res)
-    res = conditioning(res)
-    res = rematch(res)
+while max(nums)-min(nums)>k:
+    res = rematch(condi(levitate(rematch(condi(stack(plus(nums)))))))
     nums = res[::]
     ans += 1
 print(ans)
