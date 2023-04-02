@@ -38,6 +38,7 @@ def condi(lis):
                 else:
                     res[i][j] -= abs(lis[i][j] - lis[i-1][j])//5
                     res[i-1][j] += abs(lis[i][j] - lis[i-1][j])//5
+    
     for i in range(len(res)):
         for j in range(len(res[i])):
             res[i][j] += lis[i][j]
@@ -46,6 +47,7 @@ def condi(lis):
 def turn(lis):
     n, m = len(lis), len(lis[0])
     res = [[0]*n for _ in range(m)]
+
     for i in range(n):
         for j in range(m):
             res[j][n - i - 1] = lis[i][j]
@@ -66,8 +68,7 @@ def levitate(lis):
     return [tmp[-1][:n//4][::-1], tmp[0][:n//4][::-1], tmp[0][n//4:], tmp[-1][n//4:]]
 
 ans = 0
-while max(nums)-min(nums)>k:
-    res = rematch(condi(levitate(rematch(condi(stack(plus(nums)))))))
-    nums = res[::]
+while max(nums) - min(nums) > k:
+    nums = rematch(condi(levitate(rematch(condi(stack(plus(nums)))))))
     ans += 1
 print(ans)
