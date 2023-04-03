@@ -1,4 +1,4 @@
-from collections import defaultdict, deque
+from collections import deque
 import sys
 input = sys.stdin.readline
 
@@ -19,16 +19,21 @@ def bfs(folder):
     return res
 
 n,m = map(int,input().split()) # 폴더, 파일
-tree = defaultdict(list)
-
+tree = dict()
 for _ in range(n+m):
     p,f,c = map(str,input().rstrip().split())
     if c == "1":
-        tree[p].append(f)
+        if p in tree:
+            tree[p].append(f)
+        else:
+            tree[p] = [f]
         if f not in tree:
             tree[f] = []
     else:
-        tree[p].append(f)
+        if p in tree:
+            tree[p].append(f)
+        else:
+            tree[p] = [f]
 
 k = int(input())
 for _ in range(k):
