@@ -36,8 +36,7 @@ for _ in range(k):
     x = list(map(str, x_route.split("/")))[-1]
     y_route = list(map(str, y_route.split("/")))
     y, y_par = y_route[-1], y_route[-2]
-    tree[x].extend(tree[y])
-    tree[x] = list(set(tree[x]))
+    tree[x] = list(set(tree[x] + tree[y]))
     tree[y_par].remove(y)
     del tree[y]
 
