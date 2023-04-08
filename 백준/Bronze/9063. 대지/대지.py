@@ -1,10 +1,8 @@
 import sys
 input=sys.stdin.readline
-
-INF=100000
-n=int(input())
+INF=10**5
 min_x,max_x,min_y,max_y=INF,-INF,INF,-INF
-for _ in range(n):
+for _ in range(int(input())):
     x,y = map(int,input().split())
     min_x,max_x=min(min_x,x),max(max_x,x)
     min_y,max_y=min(min_y,y),max(max_y,y)
