@@ -5,7 +5,6 @@ input = sys.stdin.readline
 dx = [1,0,-1,0]
 dy = [0,1,0,-1]
 
-
 def bfs_sep(a:int, b:int, c: int):
     queue = deque()
     queue.append([a,b,c])
@@ -49,13 +48,10 @@ def bfs_cnt(a:int, b:int, c:int) -> int:
 
     return 10001
 
-
-
 n = int(input())
 graph = [list(map(int,input().split())) for _ in range(n)]
 visited = [[0]*n for _ in range(n)]
 ans = 10001
-
 
 k = 1
 for i in range(n):
