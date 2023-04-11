@@ -1,6 +1,6 @@
 import sys
 from collections import deque
-input=sys.stdin.readline
+input = sys.stdin.readline
 
 v=int(input())
 graph = [[] for _ in range(v+1)]
