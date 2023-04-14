@@ -26,7 +26,6 @@ def two_point(elsa: int, left: int, right: int) -> int:
         else:
             break
     return res
-    
 
 n = int(input())
 nums = sorted(list(map(int,input().split())))
