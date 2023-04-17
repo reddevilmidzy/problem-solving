@@ -1,9 +1,8 @@
-import sys
-input = sys.stdin.readline
-
 n = int(input())
 k = list(map(int,input().rstrip().split()))
+nums = [i for i in range(1,n+1)]
 ans= []
+
 if k == sorted(k)[::-1]:
     print(-1)
 else:
