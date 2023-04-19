@@ -21,7 +21,6 @@ def bfs(n):
 n,k = map(int,input().rstrip().split())
 ans = 0
 
-
 if n == k:
     pass
 elif n > k:
