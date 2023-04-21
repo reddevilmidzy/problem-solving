@@ -1,4 +1,4 @@
-# [Gold II] 트리의 순회 - 2263 
+# [Gold I] 트리의 순회 - 2263 
 
 [문제 링크](https://www.acmicpc.net/problem/2263) 
 
@@ -8,7 +8,7 @@
 
 ### 분류
 
-분할 정복(divide_and_conquer), 재귀(recursion), 트리(trees)
+분할 정복, 재귀, 트리
 
 ### 문제 설명
 
