@@ -4,11 +4,11 @@
 
 ### 성능 요약
 
-메모리: 30840 KB, 시간: 80 ms
+메모리: 31256 KB, 시간: 60 ms
 
 ### 분류
 
-백트래킹(backtracking), 수학(math), 정수론(number_theory), 소수 판정(primality_test)
+백트래킹, 수학, 정수론, 소수 판정
 
 ### 문제 설명
 
