@@ -3,14 +3,13 @@ import sys
 input = sys.stdin.readline
 
 def solve(words: list[str]) -> str:
-    res = deque([words[0]])
+    res = words[0]
     for word in words[1:]:
         if res[0] >= word:
-            res.appendleft(word)
+            res = word + res
         else:
-            res.append(word)
-
-    return "".join(res)
+            res += word
+    return res
 
 t = int(input())
 for _ in range(t):
