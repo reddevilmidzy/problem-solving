@@ -3,7 +3,6 @@ input = sys.stdin.readline
 
 for _ in range(int(input())):
     n,k,t,m = map(int,input().split())
-    # 각 팀마다 문제 점수 넣기
     scores = [[0]*(k+3) for _ in range(n+1)]
     # scores[k][1:-2] 까지는 문제당 해당 팀에 점수
     # scores[k[0]  제출 횟수
