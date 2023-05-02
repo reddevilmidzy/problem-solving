@@ -2,7 +2,7 @@ import sys
 input = sys.stdin.readline
 
 def dfs(word:str, cur: dict, depth: int) -> None:
-    print("--"*depth + word)
+    print("--"*depth,word,sep='')
     for nxt in sorted(cur[word]):
         dfs(nxt, cur[word], depth+1)
 
@@ -16,7 +16,5 @@ for _ in range(n):
         if nxt not in cur:
             cur[nxt] = dict()
         cur = cur[nxt]
-
-depth = 0
 for st in sorted(trie.keys()):
-    dfs(st, trie, depth)
+    dfs(st, trie, 0)
