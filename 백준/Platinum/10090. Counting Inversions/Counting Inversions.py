@@ -19,10 +19,8 @@ def merge_sort(nums:list[int]) -> list[int]:
     sorted_list.extend(left[l_idx:])
     sorted_list.extend(right[r_idx:])
     return sorted_list
-
 n = int(input())
 nums = list(map(int,input().split()))
 ans = 0
 merge_sort(nums)
-# print(merge_sort(nums))
 print(ans)
