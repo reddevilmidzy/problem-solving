@@ -40,15 +40,11 @@ def bfs(st_y:int, st_x:int, target: set) -> None:
     return tmp[0][0], tmp[0][1], tmp[0][2]
 n,m,fuel = map(int,input().split())
 board = [list(map(int,input().split())) for _ in range(n)]
-# r,c = map(minus, map(int,input().split()))
-r,c = map(int,input().split())
-r,c = r-1, c-1
+r,c = map(minus, map(int,input().split()))
 customers = dict()
 
 for i in range(m):
-    t,u,v,w = map(int,input().split())
-    t,u,v,w = t-1,u-1,v-1,w-1
-    customers[i] = [t,u,v,w]
+    customers[i] = list(map(minus, map(int,input().split())))
 
 for _ in range(m): # 고객
     postion = dict() # 위치
