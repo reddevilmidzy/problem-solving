@@ -41,5 +41,4 @@ nums = list(map(int, str(x).zfill(k)))
 disit = ["1110111", "0010010", "1011101", "1011011", "0111010", "1101011", "1101111", "1010010", "1111111", "1111011"]
 res = solve(nums, p)
 bt([], p, res)
-# print(ans)
 print(len(ans))
