@@ -1,0 +1,18 @@
+from collections import Counter
+s = list(input())
+n = len(s)
+cnt = Counter(s)
+sorted_key = sorted(cnt.keys())
+if cnt.most_common(1)[0][1] > (n+1)//2:
+    print(-1)
+else:
+    s.sort()
+
+    for i in range((n+1)//2, n): # 홀수일때 중앙값 무시하기 위해
+        if s[i] != s[n-i-1]:
+            continue
+        for j in range(i, n):
+            if s[i] != s[j]:
+                s[i], s[j] = s[j], s[i]
+                break
+    print("".join(s))
