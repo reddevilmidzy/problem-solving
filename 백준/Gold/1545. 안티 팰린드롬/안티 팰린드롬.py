@@ -1,9 +1,13 @@
-from collections import Counter
 s = list(input())
 n = len(s)
-cnt = Counter(s)
-sorted_key = sorted(cnt.keys())
-if cnt.most_common(1)[0][1] > (n+1)//2:
+cnt = dict()
+for c in s:
+    if c in cnt:
+        cnt[c] += 1
+    else:
+        cnt[c] = 1
+
+if max(cnt.values()) > (n+1)//2:
     print(-1)
 else:
     s.sort()
