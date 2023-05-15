@@ -25,13 +25,10 @@ def manachers(s: str, n: int):
 # 짝수길이의 팰린드롬도 체크하기 위해 문자 삽입
 n = int(input())*2+1
 string = "#"+"#".join(input().rstrip())+"#"
-# print(string)
-
 arr = manachers(string, n)
 res = n
 
 for idx, val in enumerate(arr):
-    # print(idx,val, "akakdk")
     if idx + val == n-1:
         res = min(res, (n-1)//2-val)
 
