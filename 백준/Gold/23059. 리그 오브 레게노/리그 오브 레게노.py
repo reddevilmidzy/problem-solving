@@ -1,32 +1,43 @@
 import sys
-from collections import deque, defaultdict
+from collections import deque
 input = sys.stdin.readline
 
-def topology() -> defaultdict:
+def topology() -> dict:
     queue = deque()
-    res = defaultdict(list)
+    res = dict()
     for item in items:
-        if edges[item] == 0:
+        if item not in edges:
             queue.append((item,0))
 
     while queue:
         item, cnt = queue.popleft()
-        res[cnt].append(item)
-        for nxt in graph[item]:
-            edges[nxt] -= 1
-            if edges[nxt] == 0:
-                queue.append((nxt, cnt+1))
+        if cnt in res:
+            res[cnt].append(item)
+        else:
+            res[cnt] = [item]
+        if item in graph:
+            for nxt in graph[item]:
+                edges[nxt] -= 1
+                if edges[nxt] == 0:
+                     queue.append((nxt, cnt+1))
     return res
 
 n = int(input())
-graph = defaultdict(list)
-edges = defaultdict(int)
+graph = dict()
+edges = dict()
 items = set()
 
 for _ in range(n):
     a,b = input().rstrip().split()
-    graph[a].append(b)
-    edges[b] += 1
+    if a in graph:
+        graph[a].append(b)
+    else:
+        graph[a] = [b]
+    
+    if b in edges:
+        edges[b] += 1
+    else:
+        edges[b] = 1
     items.add(a)
     items.add(b)
 
