@@ -1,44 +1,41 @@
 import sys
-from collections import deque
-input=sys.stdin.readline
+input = sys.stdin.readline
 
-n,m=map(int,input().rstrip().split())
-peo=list(map(int,input().rstrip().split()))
-party=[list(map(int,input().rstrip().split())) for _ in range(m)]
-graph=[[] for _ in range(n+1)]
-visited=[False for _ in range(n+1)]
-queue=deque()
-for i in party:
-    per=i[1:]
-    for j in per:
-        graph[j].extend(per) # 익스텐드 한거 셋으로 없애줌
+def find(parent: list[int], x: int) -> int:
+    if parent[x] != x:
+        parent[x] = find(parent, parent[x])
+    return parent[x]
 
-for k in range(n+1):
-    graph[k] = list(set(graph[k])-{k})    # 차집합
-#print(graph)
 
-for v in peo[1:]:
-    visited[v] = True
-    queue.append(v)
-#print(visited)
+def union(parent: list[int], a: int, b: int) -> None:
+    a = find(parent, a)
+    b = find(parent, b)
 
-def bfs():
-    while queue:
-        q=queue.popleft()
-        for v in graph[q]:
-            if not visited[v]:
-                visited[v]=True
-                queue.append(v)
+    if a < b:
+        parent[b] = a
+    else:
+        parent[a] = b
 
-bfs()
-res=set()
-ans=0
-#print(visited)
-for q in range(n+1):
-    if visited[q]:
-        res.add(q)
 
-for c in party:
-    if set(c[1:])==set(c[1:])-res:
-        ans+=1
+n,m = map(int,input().split())
+truth = list(map(int,input().split()))[1:]
+
+parent = [i for i in range(n+1)]
+
+for x in truth:
+    parent[x] = 0
+
+parties = [list(map(int,input().split())) for _ in range(m)]
+for party in parties:
+    for i in range(1,party[0]):
+        if find(parent, party[i]) != find(parent, party[i+1]):
+            union(parent, party[i], party[i+1])
+
+ans = m
+
+for party in parties:
+    for x in party[1:]:
+        if find(parent, x) == 0:
+            ans -= 1
+            break
 print(ans)
