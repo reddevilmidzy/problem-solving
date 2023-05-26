@@ -3,8 +3,7 @@ from collections import deque
 import sys
 input = sys.stdin.readline
 
-dy = (0,1,-1,0)
-dx = (1,0,0,-1)
+d = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 n,m,k = map(int,input().split())
 board = [list(map(str,input().rstrip())) for _ in range(n)]
@@ -17,8 +16,8 @@ while queue:
     if y == n-1 and x == m-1:
         print(dist)
         exit()
-    for i in range(4):
-        ny,nx = dy[i]+y, dx[i]+x
+    for dy,dx in d:
+        ny,nx = dy+y, dx+x
         if ny<0 or nx<0 or ny>=n or nx>=m: continue
 
         if board[ny][nx] == '0' and not visited[cnt][ny][nx]:
