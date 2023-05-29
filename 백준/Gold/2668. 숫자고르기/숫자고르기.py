@@ -14,7 +14,6 @@ def dfs(start):
         if nums[node] == start:
             high.add(node)
             low.add(nums[node])
-            # print(high, low)
             return list(high) if high == low else []
         if not visited[nums[node]]:
             high.add(node)
@@ -27,7 +26,6 @@ n = int(input())
 nums = [0] + [int(input()) for _ in range(n)]
 ans = []
 for i in range(1, n+1):
-
     res = dfs(i)
     if res:
         ans.extend(res)
