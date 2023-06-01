@@ -30,7 +30,6 @@ y,x = 0,0
 snake = deque([[y,x]])
 board[y][x] = 2
 
-
 while True:
     y,x = y + dy[direc], x + dx[direc] # 현재 이동 방향대로
     if 0 <= y < n and 0 <= x < n and board[y][x] != 2: # board==2 는 뱀이 존재하는 곳
