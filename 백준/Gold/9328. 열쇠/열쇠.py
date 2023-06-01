@@ -83,7 +83,6 @@ for _ in range(t):
             add_action(0,x)
         if board[n-1][x] != "*":
             add_action(n-1,x)
-
     while True:
         tmp = 0
         visited = [[False]*m for _ in range(n)]
