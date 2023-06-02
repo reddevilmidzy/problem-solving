@@ -31,11 +31,13 @@ def dijkstra(y:int, x:int, r:int, c:int):
 
 m,n = map(int,input().split())
 board = [list(map(str,input().rstrip())) for _ in range(n)]
-point = []
+def solve():
+    point = []
+    for y in range(n):
+        for x in range(m):
+            if board[y][x] == "C":
+                point.append(y)
+                point.append(x)
+    return dijkstra(point[0], point[1], point[2], point[3])
 
-for y in range(n):
-    for x in range(m):
-        if board[y][x] == "C":
-            point.append(y)
-            point.append(x)
-print(dijkstra(point[0], point[1], point[2], point[3]))
+print(solve())
