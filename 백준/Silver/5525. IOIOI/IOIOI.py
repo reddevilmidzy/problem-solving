@@ -1,7 +1,6 @@
 n = int(input())
 m = int(input())
 s = input()
-
 ans = 0
 check = 0
 i = 0
