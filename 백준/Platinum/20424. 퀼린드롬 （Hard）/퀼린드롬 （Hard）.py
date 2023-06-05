@@ -2,30 +2,26 @@ def is_same(left:str, right:str) -> bool:
     return left.lower() == q_dict[right.lower()] or left.lower() == q_dict[right.upper()] or left.upper() == q_dict[right.lower()] or left.upper() == q_dict[right.upper()]
 
 def can_be_palin(string: str):
-    for c in string:
+    for c in set(string):
         if q_dict[c.lower()] == "" and q_dict[c.upper()] == "":
             return False
     return True
 
 def get_palin(val:str, center: str) -> str:
-    left = []
-    right = []
-    cen = []
-    for c in center:
-        if q_dict[c.lower()] == "":
-            cen.append(c.upper())
-        else:
-            cen.append(c.lower())
+    m = len(val)
+    left = [0]*m
+    right = [0]*m
+    cen = [c.upper() if q_dict[c.lower()] == "" else c.lower() for c in center]
 
-    for c in val:
-        if q_dict[c.lower()] != "":
-            left.append(c.lower())
-            right.append(q_dict[c.lower()])
+    for i in range(m):
+        if q_dict[val[i].lower()] != "":
+            left[i] = val[i].lower()
+            right[m-i-1] = q_dict[val[i].lower()]
         else:
-            left.append(c.upper())
-            right.append(q_dict[c.upper()])
+            left[i] = val[i].upper()
+            right[m-i-1] = q_dict[val[i].upper()]
     
-    return "".join(left) + "".join(cen) + "".join(right[::-1])
+    return "".join(left) + "".join(cen) + "".join(right)
 
 def manacher(s:str, n:int):
     r,p = 0,0
@@ -35,6 +31,7 @@ def manacher(s:str, n:int):
             arr[i] = min(arr[2*p-i], r-i)
         else:
             arr[i] = 0
+        if not is_same(s[i], s[i]): continue
         while i-arr[i]-1>=0 and i+arr[i]+1 < n and is_same(s[i-arr[i]-1], s[i+arr[i]+1]):
             arr[i] += 1
         if r<i+arr[i]:
@@ -68,7 +65,6 @@ if not can_be_palin(origin):
 
 s = "#" + "#".join(origin) + "#"
 n = len(s)
-radius = manacher(s, n)
 arr = manacher(s ,n)
 
 result = []
