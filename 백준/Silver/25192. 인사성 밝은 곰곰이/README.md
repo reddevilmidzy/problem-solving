@@ -8,11 +8,11 @@
 
 ### 분류
 
-자료 구조(data_structures), 해시를 사용한 집합과 맵(hash_set), 트리를 사용한 집합과 맵(tree_set)
+자료 구조, 해시를 사용한 집합과 맵, 트리를 사용한 집합과 맵
 
 ### 문제 설명
 
-<p style="text-align: center;"><img alt="인사하는 곰곰이" src="" style="max-height:120px; object-fit:contain; display:inline-block;"></p>
+<p style="text-align: center;"><img alt="인사하는 곰곰이" src="https://upload.acmicpc.net/cd52b787-5b7c-4857-b917-a95c10fe6ee9/-/preview/" style="max-height:120px; object-fit:contain; display:inline-block;"></p>
 
 <p>알고리즘 입문방 오픈 채팅방에서는 새로운 분들이 입장을 할 때마다 곰곰티콘을 사용해 인사를 한다. 이를 본 문자열 킬러 임스는 채팅방의 기록을 수집해 그 중 곰곰티콘이 사용된 횟수를 구해 보기로 했다.</p>
 
