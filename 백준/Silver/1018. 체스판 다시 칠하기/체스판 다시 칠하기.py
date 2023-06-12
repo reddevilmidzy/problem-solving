@@ -1,8 +1,6 @@
 n, m = map(int, input().split())
-
 chess = [input() for i in range(n)]
 check = []
-
 for j in range(n-7):
     for k in range(m-7):
         first_w = 0
