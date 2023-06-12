@@ -19,9 +19,9 @@ def floyd():
 for _ in range(m):
     u,v,w = map(int,input().split())
     edges.append((u,v,w))
-    adj[u][v] = min(adj[u][v], w)
-    adj[v][u] = min(adj[v][u], w)
-
+    if adj[u][v] > w:
+        adj[u][v] = w
+        adj[v][u] = w
 floyd()
 
 ans = INF
