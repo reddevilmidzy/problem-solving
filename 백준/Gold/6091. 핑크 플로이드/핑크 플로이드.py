@@ -9,13 +9,11 @@ def find_parent(parent, x):
 def union_parent(parent, a,b):
     a = find_parent(parent,a)
     b = find_parent(parent,b)
-
     if a<b:
         parent[b] = a
     else:
         parent[a] = b
 
-INF = int(1e9)
 n = int(input())
 graph = [[] for _ in range(n+1)]
 edges = []
