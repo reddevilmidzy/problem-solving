@@ -1,14 +1,14 @@
-# [Gold V] 비슷한 단어 - 2179 
+# [Gold IV] 비슷한 단어 - 2179 
 
 [문제 링크](https://www.acmicpc.net/problem/2179) 
 
 ### 성능 요약
 
-메모리: 34068 KB, 시간: 2364 ms
+메모리: 34656 KB, 시간: 2292 ms
 
 ### 분류
 
-자료 구조(data_structures), 정렬(sorting), 문자열(string)
+자료 구조, 해시를 사용한 집합과 맵, 정렬, 문자열
 
 ### 문제 설명
 
