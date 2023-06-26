@@ -1,10 +1,11 @@
-from collections import defaultdict
 n = int(input())
 words = [input().rstrip() for _ in range(n)]
-char = defaultdict(int)
-
+char = dict()
+ans = 0
 for word in words:
     for i in range(len(word)):
+        if word[i] not in char:
+            char[word[i]] = 0
         char[word[i]] += 10 ** (len(word) - i - 1)
 
 rep = dict()
@@ -18,6 +19,5 @@ for i in range(n):
     tmp = ""
     for j in range(len(words[i])):
         tmp += str(rep[words[i][j]])
-    words[i] = int(tmp)
-
-print(sum(words))
+    ans += int(tmp)
+print(ans)
