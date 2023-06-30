@@ -25,6 +25,9 @@ edges = [tuple(map(int,input().split())) for _ in range(m)]
 tmp = [False]*m
 cut = []
 
+parent = [i for i in range(n+1)]
+cost = [1 for _ in range(n+1)]
+
 for _ in range(q):
     k = int(input())-1
     cut.append(k)
@@ -32,14 +35,9 @@ for _ in range(q):
 
 for i in range(m):
     if not tmp[i]:
-        tree.append(edges[i])
-
-parent = [i for i in range(n+1)]
-cost = [1 for _ in range(n+1)]
-
-for x,y in tree:
-    if find(x, parent) != find(y, parent):
-        union(x,y,parent)
+        x,y = edges[i]
+        if find(x, parent) != find(y, parent):
+            union(x,y,parent)
 
 ans = 0
 
