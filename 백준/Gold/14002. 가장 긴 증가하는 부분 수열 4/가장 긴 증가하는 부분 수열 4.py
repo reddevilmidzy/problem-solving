@@ -8,7 +8,6 @@ for i in range(n):
         if nums[j] < nums[i] and dp[i] < dp[j] + 1:
             dp[i] = dp[j] + 1
             route[i] = j
-
 node = dp.index(max(dp))
 ans = [nums[node]]
 
