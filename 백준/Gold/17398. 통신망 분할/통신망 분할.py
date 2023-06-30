@@ -6,7 +6,6 @@ def find(x:int, parent:list[int]) -> int:
         parent[x] = find(parent[x], parent)
     return parent[x]
 
-
 def union(a:int, b:int, parent:list[int]) -> None:
     a = find(a, parent)
     b = find(b, parent)
