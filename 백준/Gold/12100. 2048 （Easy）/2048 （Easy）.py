@@ -6,9 +6,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
         res = []
         for i in range(n):
             tmp = []
-            tmp_board = [board[i][j] for j in range(n)]
-            while 0 in tmp_board:
-                tmp_board.remove(0)
+            tmp_board = [board[i][j] for j in range(n) if board[i][j]]
             m = len(tmp_board)
             j = m-1
             while j > 0:
@@ -32,9 +30,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
         res = []
         for i in range(n):
             tmp = []
-            tmp_board = [board[i][j] for j in range(n)]
-            while 0 in tmp_board: # 시간 많이 안걸리려나
-                tmp_board.remove(0)
+            tmp_board = [board[i][j] for j in range(n) if board[i][j]]
             j = 0
             m = len(tmp_board)
 
@@ -60,9 +56,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
         res = [[0]*n for _ in range(n)]
         for i in range(n):
             tmp = []
-            tmp_board = [board[j][i] for j in range(n)]
-            while 0 in tmp_board:
-                tmp_board.remove(0)
+            tmp_board = [board[j][i] for j in range(n) if board[j][i]]
             m = len(tmp_board)
             j = m - 1
             while j > 0:
@@ -85,9 +79,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
         res = [[0]*n for _ in range(n)]
         for i in range(n):
             tmp = []
-            tmp_board = [board[j][i] for j in range(n)]
-            while 0 in tmp_board:
-                tmp_board.remove(0)
+            tmp_board = [board[j][i] for j in range(n) if board[j][i]]
             m = len(tmp_board)
             j = 0
             while j < m - 1:
