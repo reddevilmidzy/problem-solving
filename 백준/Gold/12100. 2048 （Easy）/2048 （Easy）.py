@@ -1,7 +1,7 @@
 from sys import stdin
 input = stdin.readline
 
-def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
+def solve(move:int, board: list[list[int]]) -> list[list[int]]:
     if move == 0:
         res = []
         for i in range(n):
@@ -15,7 +15,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
                     j -= 2
                     if j == 0:
                         tmp.append(tmp_board[j])
-                elif tmp_board[j] != tmp_board[j-1]:
+                else:
                     tmp.append(tmp_board[j])
                     j -= 1
                     if j == 0:
@@ -40,7 +40,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
                     j += 2
                     if j == m-1:
                         tmp.append(tmp_board[j])
-                elif tmp_board[j] != tmp_board[j+1]:
+                else:
                     tmp.append(tmp_board[j])
                     j += 1
                     if j == m-1:
@@ -50,7 +50,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
                 tmp.append(tmp_board[0])
 
             tmp.extend([0]*(n-len(tmp)))
-            res.append(tmp[::])
+            res.append(tmp[:])
 
     elif move == 2:
         res = [[0]*n for _ in range(n)]
@@ -65,7 +65,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
                     j -= 2
                     if j == 0:
                         tmp.append(tmp_board[j])
-                elif tmp_board[j] != tmp_board[j-1]:
+                else:
                     tmp.append(tmp_board[j])
                     j -= 1
                     if j == 0:
@@ -88,7 +88,7 @@ def solve(move:int, n:int, board: list[list[int]]) -> list[list[int]]:
                     j += 2
                     if j == m-1:
                         tmp.append(tmp_board[j])
-                elif tmp_board[j] != tmp_board[j+1]:
+                else:
                     tmp.append(tmp_board[j])
                     j += 1
                     if j == m-1:
@@ -111,7 +111,7 @@ def dfs(depth: int, board: list[list[int]]) -> None:
         return
     
     for move in range(4):
-        new = solve(move, n, board)
+        new = solve(move, board)
         if new:
             dfs(depth+1, new)
 
