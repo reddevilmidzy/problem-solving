@@ -10,7 +10,6 @@ def find(parent: list[int], x: int) -> int:
 def union(parent: list[int], a: int, b: int) -> None:
     a = find(parent, a)
     b = find(parent, b)
-
     if a < b:
         parent[b] = a
     else:
@@ -27,7 +26,6 @@ for _ in range(m):
 
 cost = [list(map(int,input().split())) for _ in range(n)]
 hq = []
-
 for i in range(1, n):
     for j in range(i+1, n):
         heappush(hq, (cost[i][j], i+1, j+1))
