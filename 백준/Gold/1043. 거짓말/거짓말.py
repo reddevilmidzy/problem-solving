@@ -16,7 +16,6 @@ def union(parent: list[int], a: int, b: int) -> None:
     else:
         parent[a] = b
 
-
 n,m = map(int,input().split())
 truth = list(map(int,input().split()))[1:]
 
@@ -30,9 +29,7 @@ for party in parties:
     for i in range(1,party[0]):
         if find(parent, party[i]) != find(parent, party[i+1]):
             union(parent, party[i], party[i+1])
-
 ans = m
-
 for party in parties:
     for x in party[1:]:
         if find(parent, x) == 0:
