@@ -16,7 +16,6 @@ def union(parent: list[int], a: int, b: int) -> None:
     else:
         parent[a] = b
 
-
 n = int(input())
 graph = [list(input().rstrip()) for _ in range(n)]
 dist = dict()
@@ -35,18 +34,14 @@ for i in range(n):
     for j in range(n):
         if graph[i][j] != "0":
             heappush(hq, (dist[graph[i][j]], i, j))
-
+            give += dist[graph[i][j]]
 while hq:
     cost, a, b = heappop(hq)
     if find(parent, a) != find(parent, b):
         union(parent, a, b)
         edges -= 1
+        give -= cost
         if not edges:
-            while hq:
-                cost, a, b = heappop(hq)
-                give += cost
             break
-    else:
-        give += cost
 
 print(give if not edges else -1)
