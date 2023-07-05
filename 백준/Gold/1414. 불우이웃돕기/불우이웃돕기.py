@@ -41,6 +41,11 @@ while hq:
     if find(parent, a) != find(parent, b):
         union(parent, a, b)
         edges -= 1
+        if not edges:
+            while hq:
+                cost, a, b = heappop(hq)
+                give += cost
+            break
     else:
         give += cost
 
