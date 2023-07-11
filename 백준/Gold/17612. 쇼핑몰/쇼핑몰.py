@@ -13,7 +13,6 @@ time = [0]*k
 done = []
 
 for i in range(n):
-    # 가장 빨리 작업 끝나는 카운터
     t,x = heappop(counter)
     time[x] += nums[i][1] # 시간 추가
     heappush(counter, (time[x], x))
