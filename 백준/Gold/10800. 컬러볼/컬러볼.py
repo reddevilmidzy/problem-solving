@@ -10,7 +10,6 @@ size = defaultdict(int)
 for i in range(n):
     c,s = map(int,input().split())
     balls.append([i, c, s, 0, 0])
-
 balls.sort(key=lambda x:(x[2], x[1]))
 
 for i in range(n):
