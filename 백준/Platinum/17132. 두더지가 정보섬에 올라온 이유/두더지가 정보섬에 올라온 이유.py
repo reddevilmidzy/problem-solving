@@ -8,7 +8,7 @@ def find(parent:list[int], x:int) -> int:
         parent[x] = find(parent, parent[x])
     return parent[x]
 
-def union(parent:list[int], a:int, b:int, w:int) -> None:
+def union(parent:list[int], a:int, b:int, w:int, child: list[int]) -> None:
     if a < b:
         parent[b] = a
         child[a] += child[b]
@@ -18,17 +18,19 @@ def union(parent:list[int], a:int, b:int, w:int) -> None:
         child[b] += child[a]
         child[a] = child[b]
 
-n = int(input())
-edges = [list(map(int,input().split())) for _ in range(n-1)]
-edges.sort(key=lambda x:-x[2])
-parent = [i for i in range(n+1)]
-child = [1]*(n+1)
-ans = 0
+def solve():
+    n = int(input())
+    edges = [list(map(int,input().split())) for _ in range(n-1)]
+    edges.sort(key=lambda x:-x[2])
+    parent = [i for i in range(n+1)]
+    child = [1]*(n+1)
+    ans = 0
 
-for x,y,w in edges:
-    x = find(parent, x)
-    y = find(parent, y)
-    ans += (child[x]*child[y])*w
-    union(parent, x, y, w)
+    for x,y,w in edges:
+        x = find(parent, x)
+        y = find(parent, y)
+        ans += (child[x]*child[y])*w
 
-print(ans)
+        union(parent, x, y, w, child)
+    return ans
+print(solve())
