@@ -1,4 +1,3 @@
-from collections import defaultdict
 bit = 36
 
 def format_num(num:str) -> int:
@@ -11,12 +10,14 @@ def format_num(num:str) -> int:
     return res
 
 n = int(input())
-dd = defaultdict(int)
+dd = dict()
 nums = []
 
 for _ in range(n):
     tmp = list(map(format_num, input().rstrip()))
     for i in range(len(tmp)):
+        if tmp[i] not in dd:
+            dd[tmp[i]] = 0
         dd[tmp[i]] += bit**(len(tmp)-i-1)
     nums.append(tmp)
 
