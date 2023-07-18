@@ -1,14 +1,6 @@
 bit = 36
-
 def format_num(num:str) -> int:
-    res = 0
-    for c in num:
-        if c.isnumeric():
-            res += int(c)
-        else:
-            res += ord(c) - 55    
-    return res
-
+    return sum([int(c) if c.isnumeric() else ord(c)-55 for c in num])
 n = int(input())
 dd = dict()
 nums = []
