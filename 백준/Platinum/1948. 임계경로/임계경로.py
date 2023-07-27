@@ -2,22 +2,22 @@ from collections import deque
 import sys
 input = sys.stdin.readline
 
-n = int(input())
-m = int(input())
-graph = [[] for _ in range(n+1)]
-back = [[] for _ in range(n+1)]
-
-cnt = [0]*(n+1)
-
-for _ in range(m):
-    u,v,w = map(int,input().split())
-    graph[u].append((v,w))
-    back[v].append((u,w))
-    cnt[v] += 1
-
-st,ed = map(int,input().split())
-
 def solve():
+    n = int(input())
+    m = int(input())
+    graph = [[] for _ in range(n+1)]
+    back = [[] for _ in range(n+1)]
+
+    cnt = [0]*(n+1)
+
+    for _ in range(m):
+        u,v,w = map(int,input().split())
+        graph[u].append((v,w))
+        back[v].append((u,w))
+        cnt[v] += 1
+
+    st,ed = map(int,input().split())
+
     time = [0]*(n+1)
     queue = deque([st])
     while queue:
