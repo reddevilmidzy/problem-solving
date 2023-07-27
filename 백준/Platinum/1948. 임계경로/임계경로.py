@@ -15,15 +15,11 @@ for _ in range(m):
     back[v].append((u,w))
     cnt[v] += 1
 
-
 st,ed = map(int,input().split())
 time = [0]*(n+1)
-queue = deque()
-queue.append(st)
-
+queue = deque([st])
 while queue:
     node = queue.popleft()
-
     for nxt,wth in graph[node]:
         cnt[nxt] -= 1
         
@@ -34,7 +30,6 @@ while queue:
             queue.append(nxt)
 
 queue.append(ed)
-
 edges = 0
 
 while queue:
