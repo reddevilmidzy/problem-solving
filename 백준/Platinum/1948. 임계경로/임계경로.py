@@ -38,10 +38,10 @@ def solve():
         node = queue.popleft()
 
         for nxt,wgh in back[node]:
-            if cnt[nxt]:
-                edges += 1
-                continue
-            if time[node] - time[nxt] == wgh and not cnt[nxt]:
+            if time[node] - time[nxt] == wgh:
+                if cnt[nxt]:
+                    edges += 1
+                    continue
                 queue.append(nxt)
                 cnt[nxt] = 1
                 edges += 1
