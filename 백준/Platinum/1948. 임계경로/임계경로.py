@@ -16,33 +16,34 @@ for _ in range(m):
     cnt[v] += 1
 
 st,ed = map(int,input().split())
-time = [0]*(n+1)
-queue = deque([st])
-while queue:
-    node = queue.popleft()
-    for nxt,wth in graph[node]:
-        cnt[nxt] -= 1
+
+def solve():
+    time = [0]*(n+1)
+    queue = deque([st])
+    while queue:
+        node = queue.popleft()
+        for nxt,wth in graph[node]:
+            cnt[nxt] -= 1
         
-        if time[nxt] < time[node] + wth:
-            time[nxt] = time[node] + wth
+            if time[nxt] < time[node] + wth:
+                time[nxt] = time[node] + wth
 
-        if not cnt[nxt]:            
-            queue.append(nxt)
+            if not cnt[nxt]:            
+                queue.append(nxt)
 
-queue.append(ed)
-edges = 0
+    queue.append(ed)
+    edges = 0
 
-while queue:
-    node = queue.popleft()
+    while queue:
+        node = queue.popleft()
 
-    for nxt,wgh in back[node]:
-        if cnt[nxt]:
-            edges += 1
-            continue
-        if time[node] - time[nxt] == wgh and not cnt[nxt]:
-            queue.append(nxt)
-            cnt[nxt] = 1
-            edges += 1
-
-print(time[ed])
-print(edges)
+        for nxt,wgh in back[node]:
+            if cnt[nxt]:
+                edges += 1
+                continue
+            if time[node] - time[nxt] == wgh and not cnt[nxt]:
+                queue.append(nxt)
+                cnt[nxt] = 1
+                edges += 1
+    return time[ed], edges
+print(*solve(),sep='\n')
