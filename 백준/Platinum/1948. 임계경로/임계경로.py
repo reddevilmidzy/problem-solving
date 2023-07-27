@@ -17,12 +17,11 @@ for _ in range(m):
 
 
 st,ed = map(int,input().split())
-# print(cnt)
 time = [0]*(n+1)
 queue = deque()
 queue.append(st)
 
-for _ in range(n):
+while queue:
     node = queue.popleft()
 
     for nxt,wth in graph[node]:
