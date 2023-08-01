@@ -1,25 +1,25 @@
-def dfs(x,y):
-    if dp[x][y] != -1:
-        return dp[x][y]
+def dfs(y, x):
+    if dp[y][x] != -1: return dp[y][x]
     else:
-        dp[x][y] = 1
+        dp[y][x] = 1
         for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if 0<=nx<N and 0<=ny<N:
-                if board[nx][ny]>board[x][y]:
-                    dp[x][y] = max(dfs(nx,ny) + 1, dp[x][y])
-        return dp[x][y]
+            ny = dy[i]+y
+            nx = dx[i]+x
+            if 0<=ny<n and 0<=nx<n:
+                if board[y][x] < board[ny][nx]:
+                    dp[y][x] = max(dp[y][x], dfs(ny,nx)+1)    
+        return dp[y][x]
 
-N = int(input())
-dx = (-1,1,0,0)
-dy = (0,0,-1,1)
-board = [list(map(int,input().split())) for _ in range(N)]
-dp = [[-1]*N for _ in range(N)]
+dy = (-1,1,0,0)
+dx = (0,0,-1,1)
 
-for x in range(N):
-    for y in range(N):
-        if dp[x][y] == -1:
-            dfs(x,y)
+n = int(input())
+board = [list(map(int,input().split())) for _ in range(n)]
+dp = [[-1]*n for _ in range(n)]
 
-print(max(map(max,dp)))
+for y in range(n):
+    for x in range(n):
+        if dp[y][x] == -1:
+            dfs(y,x)
+
+print(max(map(max, dp)))
