@@ -9,7 +9,6 @@ def kmp(pattern):
             i += 1
             pi[j] = i
     return pi
-
 word, k = input().split()
 pi = kmp(word)
 n = len(word)
