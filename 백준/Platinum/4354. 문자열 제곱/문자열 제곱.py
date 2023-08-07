@@ -10,7 +10,6 @@ def kmp(s:str, n:int):
         if s[i] == s[j]:
             i += 1
             fail[j] = i
-    # print(fail)
     if (n-fail[-1]) * (n//(n - fail[-1])) == n:
         return n//(n - fail[-1])
     return 1
