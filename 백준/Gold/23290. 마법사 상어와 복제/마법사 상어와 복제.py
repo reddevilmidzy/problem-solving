@@ -2,37 +2,31 @@ import sys
 input = sys.stdin.readline
 
 # 보면 각각의 방향도 dict로 바꾸면 중복 처리 안해도 될듯ㅇㅇ
+# 굳이 dict,, [0]*8
 
 def set_board():
     res = dict()
     for i in range(n):
         for j in range(n):
-            res[(i,j)] = {k:0 for k in range(8)}
+            res[(i,j)] = [0]*8
     return res
 
 def move():
-    global tmp
-    tmp = []
-
     for y in range(n):
-        for x in range(n):            
-            for z in board[(y,x)]:
-                # board[y][x] 에 z 방향을 보고있는 물고기
+        for x in range(n):
+            for z in range(8):
                 if not board[(y,x)][z]: continue
+                # board[y][x] 에 z 방향을 보고있는 물고기
                 # 방향 찾기
                 for w in range(8):
                     ny,nx = y+d_fish[z][0],x+d_fish[z][1]
                     # 상어위치 아니고, 범위 안에 있고, 물고기 냄새 없으면
                     if (ny,nx)!=(r,c) and (0<=ny<n and 0<=nx<n) and smell[ny][nx] == 0:
                         copy_board[(ny,nx)][z] += board[(y,x)][(z+w)%8]
-                        tmp.append((ny,nx,z, "pre",y,x)) # ny,nx 에 board[(y,x)[z]] 마리 추가
                         break
                     z = (z-1)%8
                 else: # 움직이지 못함
                     copy_board[(y,x)][z] += board[(y,x)][z]
-    # print(tmp)
-    # tmp 가 이번 이동에서 이동한 물고기 행적
-    #  ←, ↖, ↑, ↗, →, ↘, ↓, ↙ 
 
 def move_sh(r:int,c:int):
     res = []
@@ -44,23 +38,22 @@ def move_sh(r:int,c:int):
             y,x = d_shark[i][0]+y, d_shark[i][1]+x
             if y < 0 or y >= n or x < 0 or x >= n: break # 이 루트로 이동 불가
             if (y,x) not in pre:
-                cnt += sum(copy_board[(y,x)].values())
-            pre.add((y,x))
+                cnt += sum(copy_board[(y,x)])
+                pre.add((y,x))
         else:
             res.append((cnt, moving))
     res.sort(key=lambda x:(-x[0], x[1]))
 
     y,x = r,c
     # 상좌하우
-
+    
+    # 저어기 sum(...) 대신에 이 움직임으로 값을 얻을 수 있는지 확인하면 줄일 수 있을까?
     for i in res[0][1]:
         y,x = d_shark[i][0]+y, d_shark[i][1]+x
-
-        if sum(copy_board[(y,x)].values()):
+        if sum(copy_board[(y,x)]):
             copy_board[(y,x)] = {j:0 for j in range(8)}
             smell[y][x] = 3
     return y,x
-
 
 def bt(s:list[int]) -> None:
     if len(s) == 3:
@@ -94,7 +87,6 @@ c-=1
 bt([])
 
 while s:
-    tmp = []
     # 물고기 이동
     move()
     # 상어 이동
@@ -111,4 +103,4 @@ while s:
     copy_board = set_board()
     s -= 1
 
-print(sum([sum(board[(i,j)].values()) for i in range(n) for j in range(n)]))
+print(sum([sum(board[(i,j)]) for i in range(n) for j in range(n)]))
