@@ -25,14 +25,17 @@ hq = []
 
 for _ in range(p):
     u,v,w = map(int,input().split())
-    heapq.heappush(hq, (2*w+cost[u]+cost[v], u,v,w))
+    heapq.heappush(hq, (2*w+cost[u]+cost[v], u,v))
 
 nodes = [0]*(n+1)
 ans = min(cost[1:])
+edges = n-1
 
 while hq:
-    dist,u,v,w = heapq.heappop(hq)
+    dist,u,v = heapq.heappop(hq)
     if find(parent, u) != find(parent, v):
         union(parent, u, v)
         ans += dist
+        edges -= 1
+        if not edges: break
 print(ans)
