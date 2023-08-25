@@ -13,7 +13,6 @@ d = [-1]*(n+1)
 stk = []
 visited = [False]*(n+1)
 idx = 0
-ans = False
 
 def dfs(cur):
     global idx
@@ -38,11 +37,11 @@ def dfs(cur):
             if cur == node: break
 
         if scc == n:
-            global ans
-            ans = True
+            print("Yes")
+            exit()
     return parent
 
 for cur in range(1, n+1):
     if d[cur] == -1:
         dfs(cur)
-print(["No","Yes"][ans])
+print("No")
