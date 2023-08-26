@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 sys.setrecursionlimit(10**5)
-LOG = 17
+LOG = 16
 
 n = int(input())
 parent = [[0]*LOG for _ in range(n+1)]
