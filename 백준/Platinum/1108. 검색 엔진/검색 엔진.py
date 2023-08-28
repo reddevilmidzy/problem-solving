@@ -1,6 +1,5 @@
 from collections import defaultdict, deque
 import sys
-# sys.stdin = open("pythonfile/input.txt","r")
 input = sys.stdin.readline
 
 def dfs(cur):
@@ -20,21 +19,17 @@ def dfs(cur):
             parent = min(parent, d[nxt])
     
     if d[cur] == parent:
-        scc = []
         while True:
             node = stk.pop()
             visited[node] = False
-            scc.append(node)
             scc_dict[node] = num
-
             if cur == node: break
         num += 1
-        scc_list.append(scc)
     
     return parent
 
 
-def topology():
+def topology(s):
     queue = deque()
     res = {}
     for web in web_site:
@@ -42,21 +37,16 @@ def topology():
         if cnt[web] == 0:
             queue.append(web)
 
-    # print(queue)
-    # print("cnt",cnt)
     while queue:
         cur = queue.popleft()
-        # print("cur", cur)
         for nxt in dag[cur]:
 
             cnt[nxt] -= 1
             res[nxt] += res[cur]
             if cnt[nxt] == 0:
-                # print("nxt",nxt)
                 queue.append(nxt)
     
-    return res
-    # print(res)
+    return res[s]
 
 m = int(input())
 graph = defaultdict(list)
@@ -79,8 +69,6 @@ d = {i:-1 for i in web_site}
 stk = []
 visited = {i:False for i in web_site}
 scc_dict = dict()
-scc_list = []
-
 
 for cur in web_site:
     if d[cur] == -1:
@@ -93,17 +81,6 @@ for cur in web_site:
     for nxt in graph[cur]:
         if scc_dict[cur] != scc_dict[nxt]:
             dag[cur].append(nxt)
-            # dag[scc_dict[cur]].append(scc_dict[nxt])
             cnt[nxt] += 1
-        # print(scc_dict[cur], scc_dict[nxt])
 
-# print(dag)
-# print(graph)
-# print(web_site)
-# print(d)
-# print(scc_dict)
-# print(scc_list)
-# print(cnt)
-
-res = topology()
-print(res[s])
+print(topology(s))
