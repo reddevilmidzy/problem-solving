@@ -8,7 +8,8 @@ def binary(k, start, end):
         cnt = 0
         for i in lan:
             cnt += i//mid
-        if cnt < k: end = mid - 1
+        if cnt < k:
+            end = mid - 1
         else:
             res.append(mid)
             start = mid + 1
