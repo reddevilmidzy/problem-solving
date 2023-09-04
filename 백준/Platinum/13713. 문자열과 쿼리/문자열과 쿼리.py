@@ -15,7 +15,6 @@ def z_fun(s:str):
         if r < i+z[i]-1:
             r = i+z[i]-1
             l = i
-    
     return z
 
 z = z_fun(input().rstrip()[::-1])
