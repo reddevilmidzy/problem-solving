@@ -3,19 +3,18 @@ from collections import deque
 def bfs(s:int, t:int):
     if s == t:
         return 0
-    
     queue = deque()
-    queue.append(((s, "")))
-    visited = set()
-    visited.add(s)
+    queue.append((s, ""))
+    queue.append((1, "/"))
+    visited = {s, 1}
     res = []
     while queue:
         cur,cmd = queue.popleft()
         if cur == t:
             res.append(cmd)
             continue
-        for nxt,v in [(cur*cur, "*"), (cur+cur, "+"), (cur-cur, "-"), (cur//cur, "/")]:
-            if nxt not in visited and 0 < nxt < INF:
+        for nxt,v in [(cur*cur, "*"), (cur+cur, "+")]:
+            if nxt not in visited and 0 < nxt <= t:
                 queue.append((nxt, cmd+v))
                 if nxt != t:
                     visited.add(nxt)
@@ -23,5 +22,4 @@ def bfs(s:int, t:int):
     return res[0] if res else -1
 
 s,t = map(int,input().split())
-INF = max(s,t)+1
 print(bfs(s,t))
