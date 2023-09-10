@@ -1,0 +1,5 @@
+n = int(input())
+k = int(input())
+nums = sorted(list(map(int,input().split())))
+diff = sorted([nums[i+1]-nums[i] for i in range(n-1)],reverse=True)
+print(sum(diff[k-1:]))
