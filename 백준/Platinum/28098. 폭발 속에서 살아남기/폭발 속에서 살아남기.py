@@ -12,17 +12,15 @@ def convex_hull(pos:list[list[int]]):
     global excape
     convex = []
     for c in pos:
-        while len(convex) >= 2:
-            a,b = convex[-2], convex[-1]
-            if ccw(a,b,c): break
+        while len(convex) >= 2 and not ccw(convex[-2], convex[-1], c):
             convex.pop()
         convex.append(c)
     
     for y,x in convex:
         if y == 0.0 and x == 0.0:
-            excape = True
-            break
-
+            print("Yes")
+            exit()
+            
 def dist(y:int, x:int) -> float:
     return y/2,  x/2
 
@@ -32,9 +30,6 @@ pos = [(0.0,0.0)]
 for y,x in bomb:
     pos.append(dist(y,x))
 pos.sort()
-excape = False
-
 convex_hull(pos)
 convex_hull(pos[::-1])
-
-print(["No","Yes"][excape])
+print("No")
