@@ -1,16 +1,5 @@
 a = input()
 b = input()
-# a = "aaaa"
-# b = "ta"
-
-# a ="yeshowmuchiloveyoumydearmotherreallyicannotbelieveit"
-# b = "yeaphowmuchiloveyoumydearmother"
-
-# a = "a"
-# b = "b"
-# a = "bbbaba"
-
-# b = "babab"
 
 m = len(a)
 s = a + "0" + b
@@ -55,7 +44,6 @@ while True:
     
     if tmp[-1] == n-1:
         break
-
     d*=2
 
 lcp = [0]*n
@@ -64,7 +52,6 @@ for i in range(n):
     if pos[i] == 1:
         k -= (k>0)
         continue
-
     j = sa[pos[i]-2]
     while (max(i,j)+k < n) and (s[i+k] == s[j+k]):
         k += 1
@@ -72,28 +59,11 @@ for i in range(n):
     lcp[pos[i]-1] = k
     k -= (k>0)
 
-
 res = -1
 idx = -1
-# print("m",m)
-# print("s",s)
 for i in range(n):
     if res < lcp[i] and ((sa[i-1] > m and sa[i] < m) or (sa[i-1] < m and sa[i] > m)):
         res = lcp[i]
         idx = sa[i-1]
-
-        # print("res",res)
-
-        # print(s[sa[i-1]:])
-        # print(sa[i])
-
-# print("sa",sa)
-# print("lcp",lcp)
-
-# print("res",res)
-# for i in sa:
-#     print(s[i:])
-
-# print("idx",idx)
 print(res)
 print(s[idx:idx+res])
