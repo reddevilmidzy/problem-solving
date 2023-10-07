@@ -15,11 +15,9 @@ def bfs(st):
                 visited[nxt] = +(pos==0)
             elif visited[nxt] == pos:
                 return False
-    
     return True
 
 t = int(input())
-
 for _ in range(t):
     n,m = map(int,input().split())
     graph = [[] for _ in range(n+1)]
@@ -29,7 +27,6 @@ for _ in range(t):
         graph[v].append(u)
 
     visited = [-1]*(n+1)
-    
     for st in range(1, n+1):
         if visited[st] == -1:
             visited[st] = 0
