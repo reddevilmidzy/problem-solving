@@ -1,6 +1,6 @@
 import sys
 input = sys.stdin.readline
-INF = int(1e9)
+INF = int(1e7)
 
 def solve():
     dp = [[-INF]*(n+1) for _ in range(t)]
@@ -8,7 +8,6 @@ def solve():
     for i in range(1, t):
         for j in range(n+1):
             for k in range(s, 0, -1):
-                dp[i][j] = max(dp[i][j], dp[i-1][j])
                 if j-k >= 0 and dp[i-1][j-k] != -INF:
                     dp[i][j] = max(dp[i][j], dp[i-1][j-k] + arr[j])
 
