@@ -8,8 +8,8 @@ def solve():
     for i in range(1, t):
         for j in range(n+1):
             for k in range(s, 0, -1):
-                if j-k >= 0 and dp[i-1][j-k] != -INF:
-                    dp[i][j] = max(dp[i][j], dp[i-1][j-k] + arr[j])
+                if j-k >= 0 and dp[i-1][j-k] != -INF and dp[i][j] < dp[i-1][j-k]+arr[j]:
+                    dp[i][j] = dp[i-1][j-k] + arr[j]
 
     return max(dp[t-1][-s:])
 
@@ -20,6 +20,4 @@ while True:
     arr = [0]
     while len(arr) <= n:
         arr.extend(list(map(int,input().split())))
-    arr.append(0)
-    # print(arr)
     print(solve())
