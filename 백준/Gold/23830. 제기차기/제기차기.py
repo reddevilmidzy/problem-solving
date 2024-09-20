@@ -3,12 +3,11 @@ input=sys.stdin.readline
 
 def solve(k):
     res=tot
-    for i in range(n):
-        if nums[i]<k:
+    for num in nums:
+        if num<k:
             res+=q
-        elif k+r < nums[i]:
-            res-=p*(n-i)
-            break
+        elif k+r < num:
+            res-=p
     #break 집어넣기
     return res >= s
 
