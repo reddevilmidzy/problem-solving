@@ -11,9 +11,7 @@ for _ in range(t):
         word[chr(i)] = []
     for i in range(n):
         word[w[i]].append(i)
-    
     res = []
-
     for val in word.values():
         if len(val) < k:
             continue
