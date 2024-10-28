@@ -1,25 +1,14 @@
-import sys
-input = sys.stdin.readline
-
-n,k = map(int,input().split())
-nums = list(map(int,input().split()))
-nums.sort()
-
-# 정렬 때린 후 이분탐색하면 될 것 같았으나
-# 1, 4, 4, 7이 있을 때, k = 8 일때가 걸린다. 투포인터
-
-left,right = 0, n-1
-res = 0
-
-while left <= right:
-    if nums[right] >= k:
-        res += 1
-        right -= 1
-    elif nums[left] + nums[right] >= k and left!=right:
-        res += 1
-        left += 1
-        right -= 1
-    else:
-        left += 1
-
-print(res if res else -1)
+n,k=map(int,input().split())
+m=sorted(list(map(int,input().split())))
+l,r=0,n-1
+a=0
+while l<=r:
+    if m[r]>=k:
+        a+=1
+        r-=1
+    elif m[l]+m[r]>=k and l!=r:
+        a+=1
+        l+=1
+        r-=1
+    else:l+=1
+print([-1,a][a!=0])
