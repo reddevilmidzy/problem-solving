@@ -7,17 +7,20 @@ nums = [sorted(list(map(int,input().split()))) for _ in range(n)]
 res = int(1e9)
 pos = [0]*n
 
-max_val = max([nums[i][0] for i in range(n)])
-hq = [[nums[i][0], i] for i in range(n)]
-heapq.heapify(hq)
+max_val = 0
+hq = []
+
+for i in range(n):
+    heapq.heappush(hq, (nums[i][0], i))
+    max_val = max(max_val, nums[i][0])
 
 while hq:
     val,idx = heapq.heappop(hq)
     if res > max_val - val:
         res = max_val - val
-    if pos[idx] == m:
+    if pos[idx] + 1 == m:
         break
-    heapq.heappush(hq, [nums[idx][pos[idx]], idx])
-    max_val = max(max_val, nums[idx][pos[idx]])
     pos[idx] += 1
+    heapq.heappush(hq, (nums[idx][pos[idx]], idx))
+    max_val = max(max_val, nums[idx][pos[idx]])
 print(res)
