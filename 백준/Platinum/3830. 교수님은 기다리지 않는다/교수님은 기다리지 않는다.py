@@ -21,11 +21,8 @@ res = []
 while True:
     n,m = map(int,input().split())
     if n==0: break
-
-    graph = [[] for _ in range(n + 1)]
     parent = [i for i in range(n + 1)]
     weight = [0] * (n + 1)
-    hq = []
     for _ in range(m):
         cmd = list(input().rstrip().split())
 
