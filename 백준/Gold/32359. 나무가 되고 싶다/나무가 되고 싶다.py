@@ -4,7 +4,7 @@ input = sys.stdin.readline
 n = int(input())
 nums = list(map(int,input().split()))
 
-m = 60
+m = nums[-1].bit_length()
 res = 0
 fill = set(nums)
 depth = [0] * (m + 1)
