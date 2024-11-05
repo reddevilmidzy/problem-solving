@@ -16,8 +16,6 @@ def bfs():
                     if not visited[i]:
                         visited[i] = True
                         queue.append((i, cnt+1))
-
-
 n, k = map(int, input().split())
 visited = [False for i in range(100001)]
 if n == k:
