@@ -1,20 +1,23 @@
 import sys
 input = sys.stdin.readline
 
-n,m = map(int,input().rstrip().split())
-tree = list(map(int,input().rstrip().split()))
-def binary_search(start, end, cut):
-    res = []
-    while start <= end:
-        ans = 0
-        mid = (start+end)//2
-        for i in tree:
-            if i > mid:
-                ans += i-mid
-        if ans < m:
-            end = mid-1
-        elif ans >= m:
-            res.append([ans,mid])
-            start = mid+1
-    return sorted(res)[0][1]
-print(binary_search(0, max(tree), max(tree)))
+def cutting(h):
+    res = 0
+    for num in nums:
+        if num-h > 0:
+            res += num - h
+        else:
+            break
+    return res
+
+n,m = map(int,input().split())
+nums = sorted(list(map(int,input().split())), reverse=True)
+
+st,ed = 0, max(nums)
+while st <= ed:
+    mid = (st+ed)//2
+    if cutting(mid) >= m:
+        st = mid + 1
+    else:
+        ed = mid - 1
+print(ed)
