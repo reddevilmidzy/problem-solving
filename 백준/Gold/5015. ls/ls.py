@@ -5,22 +5,19 @@ def solve(p_idx: int, s_idx: int) -> int:
     if dp[p_idx][s_idx] != -1:
         return dp[p_idx][s_idx]
 
-    i = p_idx
-    j = s_idx
-
-    while i < len(p) and j < len(s) and p[i] == s[j]:
-        i += 1
-        j += 1
-
-    if i == len(p):
-        dp[p_idx][s_idx] = +(j == len(s))
+    if p_idx < len(p) and s_idx < len(s) and p[p_idx] == s[s_idx]:
+        dp[p_idx][s_idx] = solve(p_idx + 1, s_idx + 1)
         return dp[p_idx][s_idx]
 
-    if p[i] == "*":
-        for k in range(len(s) - j + 1):
-            if solve(i + 1, j + k):
-                dp[p_idx][s_idx] = 1
-                return dp[p_idx][s_idx]
+    if p_idx == len(p):
+        dp[p_idx][s_idx] = +(s_idx == len(s))
+        return dp[p_idx][s_idx]
+
+    if p[p_idx] == "*":
+        if solve(p_idx + 1, s_idx) or (s_idx < len(s) and solve(p_idx, s_idx + 1)):
+            dp[p_idx][s_idx] = 1
+            return dp[p_idx][s_idx]
+            
     dp[p_idx][s_idx] = 0
     return dp[p_idx][s_idx]
 
