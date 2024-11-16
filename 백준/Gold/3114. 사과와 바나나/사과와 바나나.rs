@@ -10,10 +10,10 @@ fn main() {
     let n: usize = iter.next().unwrap().parse().unwrap();
     let m: usize = iter.next().unwrap().parse().unwrap();
 
-    let mut a: Vec<Vec<i32>> = vec![vec![0; m + 2]; n + 2];
-    let mut b: Vec<Vec<i32>> = vec![vec![0; m + 2]; n + 2];
+    let mut a: Vec<Vec<i32>> = vec![vec![0; m + 1]; n + 1];
+    let mut b: Vec<Vec<i32>> = vec![vec![0; m + 1]; n + 1];
 
-    let mut dp: Vec<Vec<i32>> = vec![vec![0; m + 2]; n + 2];
+    let mut dp: Vec<Vec<i32>> = vec![vec![0; m + 1]; n + 1];
 
     for i in 1..=n {
         let line = input.next().unwrap().unwrap();
@@ -25,7 +25,7 @@ fn main() {
 
             if c == 'A' {
                 a[i][j] = val;
-            } else if c == 'B' {
+            } else {
                 b[i][j] = val;
             }
         }
@@ -56,11 +56,11 @@ fn main() {
     for i in 2..=n {
         for j in 2..=m {
 
-            //왼쪽에서 오른쪽으로
+            //왼쪽
             dp[i][j] = dp[i][j].max(dp[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1] - b[0][j] + b[0][j - 1]
                 + a[n][j] - a[n][j - 1] - a[i][j] + a[i][j - 1]);
 
-            // 위에서 아래로
+            // 아래로
 
             dp[i][j] = dp[i][j].max(dp[i - 1][j]
                 - (a[i][j] - a[i][j - 1] - a[i - 1][j] + a[i - 1][j - 1]));
