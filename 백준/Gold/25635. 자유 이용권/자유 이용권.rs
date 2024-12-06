@@ -16,9 +16,7 @@ fn main() {
     }
 
     if (tot + 1) / 2 < max_val {
-        tot -= max_val;
-        tot *= 2;
-        tot += 1;
+        tot = (tot - max_val) * 2 + 1;
     }
     print!("{tot}");
 }
