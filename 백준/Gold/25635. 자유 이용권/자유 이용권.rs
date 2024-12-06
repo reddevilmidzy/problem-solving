@@ -6,13 +6,13 @@ fn main() {
     let mut next = || tokens.next().unwrap();
 
     let n: usize = next().parse().unwrap();
-    let nums: Vec<u64> = (0..n).map(|_| next().parse().unwrap()).collect();
 
     let mut tot: u64 = 0;
-    let mut max_val : u64 = 0;
-    for num in &nums {
-        tot += *num;
-        max_val = max_val.max(*num);
+    let mut max_val: u64 = 0;
+    for _ in 0..n {
+        let num: u64 = next().parse().unwrap();
+        tot += num;
+        max_val = max_val.max(num);
     }
 
     if (tot + 1) / 2 < max_val {
@@ -22,4 +22,3 @@ fn main() {
     }
     print!("{tot}");
 }
-// 10 2가 반례였음
