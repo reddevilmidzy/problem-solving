@@ -5,10 +5,10 @@ n,k = map(int,input().split())
 nums = list(map(int,input().split()))
 
 arr = [0]*(max(nums)+1)
-ans = [1]
+ans = 1
 one,two = 0,0
 
-while one <= two and two < n:
+while two < n:
     
     if arr[nums[two]] < k:
         arr[nums[two]] += 1
@@ -16,7 +16,5 @@ while one <= two and two < n:
     else:
         arr[nums[one]] -= 1
         one += 1
-
-    ans.append(two-one)
-
-print(max(ans))
+    ans = max(ans, two-one)
+print(ans)
