@@ -26,7 +26,7 @@ fn main() {
 
     let mut nums: HashMap<i64, i64> = HashMap::new();
 
-    for i in 0..=n {
+    for i in 0..n {
         for j in (i + 1)..=n {
             let val = a_pre[j] - a_pre[i];
             if !nums.contains_key(&val) {
@@ -37,7 +37,7 @@ fn main() {
         }
     }
 
-    for i in 0..=m {
+    for i in 0..m {
         for j in (i + 1)..=m {
             let x = t - (b_pre[j] - b_pre[i]);
             if nums.contains_key(&x) {
