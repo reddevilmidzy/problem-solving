@@ -1,17 +1,17 @@
 use std::io::{read_to_string, stdin};
+use std::fmt::Write;
 
 fn main() {
     let stdin = read_to_string(stdin()).unwrap();
     let mut tokens = stdin.split_whitespace();
     let mut next = || tokens.next().unwrap();
+    let mut stdout = String::new();
 
     let t: usize = next().parse().unwrap();
-    let mut res = String::new();
 
     for _ in 0..t {
         let n: usize = next().parse().unwrap();
-        res.push_str((23 * n).to_string().as_str());
-        res.push('\n');
+        writeln!(stdout, "{}", n * 23).unwrap();
     }
-    print!("{res}");
+    print!("{stdout}");
 }
