@@ -8,13 +8,8 @@ fn solve(apple: usize, peach: usize) -> String {
     let mut res = String::new();
     writeln!(res, "YES").unwrap();
     if peach == 2 {
-        if apple > 0 {
-            writeln!(res, "{} {}", 1, apple + peach).unwrap();
-            writeln!(res, "{}", "O".repeat(apple + peach)).unwrap();
-        } else {
-            writeln!(res, "1 2").unwrap();
-            writeln!(res, "OO").unwrap();
-        }
+        writeln!(res, "{} {}", 1, apple + peach).unwrap();
+        writeln!(res, "{}", "O".repeat(apple + peach)).unwrap();
     } else if peach >= 4 {
         let tmp = (peach - 2) / 2;
         let size = apple + peach - tmp;
