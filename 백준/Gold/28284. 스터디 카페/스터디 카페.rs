@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::io::{read_to_string, stdin};
 
 fn main() {
@@ -11,7 +10,7 @@ fn main() {
 
     let mut a: Vec<i32> = (0..n).map(|_| next().parse().unwrap()).collect();
     let mut time: Vec<(usize, i32)> = Vec::with_capacity(2 * n);
-    let mut real_time: HashMap<usize, usize> = HashMap::new(); // 배열로 바꿔보기
+    let mut real_time: Vec<usize> = vec![0; m * 2 + 1];
     for _ in 0..m {
         let (st, ed): (usize, usize) = (next().parse().unwrap(), next().parse().unwrap());
         time.push((st, 1));
@@ -19,7 +18,7 @@ fn main() {
     }
 
     time.sort();
-    real_time.insert(0, time[0].0);
+    real_time[0] = time[0].0;
     let mut pre = vec![0; m * 2 + 1];
     let mut pre_val = time[0].0;
     time[0] = (0, time[0].1);
@@ -29,7 +28,7 @@ fn main() {
             pre_val = time[i].0;
             time[i] = (time[i - 1].0, time[i].1);
         } else {
-            real_time.insert(time[i - 1].0 + 1, time[i].0);
+            real_time[time[i - 1].0 + 1] = time[i].0;
             pre_val = time[i].0;
             time[i] = (time[i - 1].0 + 1, time[i].1);
         }
@@ -58,27 +57,12 @@ fn main() {
         if pre[i] == 0 {
             continue;
         }
-        if !real_time.contains_key(&(i + 1)) {
-            continue;
-        }
-        let st = real_time.get(&i).unwrap();
-        let ed = real_time.get(&(i + 1)).unwrap();
+        let st = real_time[i];
+        let ed = real_time[i + 1];
 
         let diff = (ed - st) as u64;
         min_res += min_a[pre[i] as usize - 1] * diff;
         max_res += max_a[pre[i] as usize - 1] * diff;
-
-        // println!(
-        //     "i = {i}, min_res={}, max_res={}, pre[i]={}",
-        //     min_a[pre[i] as usize - 1] * diff,
-        //     max_a[pre[i] as usize - 1] * diff,
-        //     pre[i]
-        // )
     }
-    // println!("real ={:?}", real_time);
-    // println!("pre={:?}", pre);
-    // println!("a={:?}", a);
-    // println!("min_a ={:?}", min_a);
-    // println!("max_a={:?}", max_a);
     print!("{} {}", min_res, max_res);
 }
