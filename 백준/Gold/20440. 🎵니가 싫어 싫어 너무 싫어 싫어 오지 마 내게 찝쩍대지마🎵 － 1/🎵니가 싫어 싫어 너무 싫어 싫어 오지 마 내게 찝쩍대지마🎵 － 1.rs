@@ -37,11 +37,11 @@ fn main() {
     for (idx, _, val) in &mos {
         pre[*idx] += val;
     }
+    let mut max_cnt = pre[0];
     for i in 1..pre.len() {
         pre[i] += pre[i - 1];
+        max_cnt = max_cnt.max(pre[i]);
     }
-
-    let max_cnt = *pre.iter().max().unwrap();
 
     let mut idx = 0;
     while pre[idx] < max_cnt {
