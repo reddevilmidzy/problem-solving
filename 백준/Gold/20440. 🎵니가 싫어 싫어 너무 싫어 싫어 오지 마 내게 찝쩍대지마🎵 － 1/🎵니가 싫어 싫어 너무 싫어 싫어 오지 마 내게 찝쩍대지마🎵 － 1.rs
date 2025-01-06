@@ -12,29 +12,29 @@ fn main() {
 
     for i in 0..n {
         let (st, ed): (usize, usize) = (next().parse().unwrap(), next().parse().unwrap());
-        mos.push((st, i, 1));
-        mos.push((ed, i, -1));
+        mos.push((st, 1));
+        mos.push((ed, -1));
     }
 
     mos.sort();
     let mut pre_val = mos[0].0;
     real_time.insert(0, mos[0].0);
-    mos[0] = (0, mos[0].1, mos[0].2);
+    mos[0] = (0, mos[0].1);
 
     for i in 1..n * 2 {
         if mos[i].0 == pre_val {
             pre_val = mos[i].0;
-            mos[i] = (mos[i - 1].0, mos[i].1, mos[i].2);
+            mos[i] = (mos[i - 1].0, mos[i].1);
         } else {
             real_time.insert(mos[i - 1].0 + 1, mos[i].0);
             pre_val = mos[i].0;
-            mos[i] = (mos[i - 1].0 + 1, mos[i].1, mos[i].2);
+            mos[i] = (mos[i - 1].0 + 1, mos[i].1);
         }
     }
 
     let mut pre = vec![0; n * 2 + 1];
 
-    for (idx, _, val) in &mos {
+    for (idx, val) in &mos {
         pre[*idx] += val;
     }
     let mut max_cnt = pre[0];
