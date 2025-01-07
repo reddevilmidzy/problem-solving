@@ -40,9 +40,6 @@ fn main() {
     y_list.sort();
     z_list.sort();
 
-    // println!("{:?}", x_list);
-    // println!("{:?}", y_list);
-    // println!("{:?}", z_list);
     let x_len = x_list.len();
     let y_len = y_list.len();
     let z_len = z_list.len();
@@ -50,9 +47,6 @@ fn main() {
     let x_map: HashMap<usize, usize> = x_list.iter().cloned().zip(0..x_len).collect();
     let y_map: HashMap<usize, usize> = y_list.iter().cloned().zip(0..y_len).collect();
     let z_map: HashMap<usize, usize> = z_list.iter().cloned().zip(0..z_len).collect();
-    // println!("x_map={:?}", x_map);
-    // println!("y_map={:?}", y_map);
-    // println!("z_map={:?}", z_map);
 
     let mut pre = vec![vec![vec![0; z_len]; y_len]; x_len];
 
@@ -67,13 +61,14 @@ fn main() {
 
         pre[st_x][st_y][st_z] += 1;
         pre[ed_x][st_y][st_z] -= 1;
-
+        
+        pre[st_x][ed_y][ed_z] += 1;
         pre[st_x][ed_y][st_z] -= 1;
+        
+        pre[ed_x][st_y][ed_z] += 1;
         pre[st_x][st_y][ed_z] -= 1;
 
         pre[ed_x][ed_y][st_z] += 1;
-        pre[ed_x][st_y][ed_z] += 1;
-        pre[st_x][ed_y][ed_z] += 1;
         pre[ed_x][ed_y][ed_z] -= 1;
     }
 
