@@ -1,4 +1,3 @@
-use std::cmp::min;
 use std::io::{read_to_string, stdin};
 
 fn main() {
@@ -11,17 +10,12 @@ fn main() {
     let a: Vec<u64> = (0..n).map(|_| next().parse().unwrap()).collect();
     let b: Vec<u64> = (0..n).map(|_| next().parse().unwrap()).collect();
 
-    // dp[i][j] = j방법으로 i 번 돌까지 옮김.
-    // j=0 끌고감, j=1 들고감
-    let mut dp: Vec<Vec<u64>> = vec![vec![u64::MAX; 2]; n];
-
-    dp[0][0] = a[0];
-    dp[0][1] = b[0];
+    let mut pre_a = a[0];
+    let mut pre_b = b[0];
 
     for i in 1..n {
-        dp[i][0] = min(dp[i - 1][0] + a[i], dp[i - 1][1] + k + a[i]);
-        dp[i][1] = min(dp[i - 1][1] + b[i], dp[i - 1][0] + k + b[i])
+        (pre_a, pre_b) = (pre_a.min(pre_b + k) + a[i], pre_b.min(pre_a + k) + b[i]);
     }
 
-    print!("{}", dp[n - 1][0].min(dp[n - 1][1]))
+    print!("{}", pre_a.min(pre_b));
 }
