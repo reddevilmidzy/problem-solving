@@ -16,23 +16,18 @@ fn main() {
         );
         nums.push(vec![a, b, c]);
     }
+    nums.sort_by(|a, b| a[2].cmp(&b[2]));
 
     let mut res = u32::MAX;
     for u in 0..n {
         for v in 0..n {
+            let mut cnt = 0;
             for w in 0..n {
-                let mut cnt = 0;
-                let a = nums[u][0];
-                let b = nums[v][1];
-                let c = nums[w][2];
-
-                for x in 0..n {
-                    if a >= nums[x][0] && b >= nums[x][1] && c >= nums[x][2] {
-                        cnt += 1;
-                    }
+                if nums[u][0] >= nums[w][0] && nums[v][1] >= nums[w][1] {
+                    cnt += 1;
                 }
                 if cnt >= m {
-                    res = res.min(a + b + c);
+                    res = res.min(nums[u][0] + nums[v][1] + nums[w][2]);
                 }
             }
         }
