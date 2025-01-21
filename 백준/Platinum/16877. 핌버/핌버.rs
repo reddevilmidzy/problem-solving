@@ -1,14 +1,5 @@
 use std::io::{read_to_string, stdin};
 
-fn mex(mut arr: Vec<bool>) -> u32 {
-    for i in 0..arr.len() {
-        if !arr[i] {
-            return i as u32;
-        }
-    }
-    arr.len() as u32
-}
-
 fn main() {
     let stdin = read_to_string(stdin()).unwrap();
     let mut token = stdin.split_whitespace();
@@ -42,15 +33,15 @@ fn get_grundy() -> Vec<u32> {
         17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578];
 
     for i in 2..=n {
-        let mut visited: Vec<bool> = vec![false; 16];
+        let mut bit = 0i32;
         for j in &fibo {
             if i >= *j {
-                visited[grundy[i - *j] as usize] = true;
+                bit |= 1 << grundy[i - *j];
             } else {
                 break;
             }
         }
-        grundy[i] = mex(visited);
+        grundy[i] = bit.trailing_ones();
     }
 
     grundy
