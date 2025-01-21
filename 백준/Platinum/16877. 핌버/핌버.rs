@@ -10,7 +10,7 @@ fn main() {
     print!("{}", solve(n, nums));
 }
 
-fn solve(n: usize, nums: Vec<u32>) -> String {
+fn solve(_n: usize, nums: Vec<u32>) -> String {
     let mut res =0 ;
     let nim = get_grundy();
 
@@ -24,9 +24,9 @@ fn solve(n: usize, nums: Vec<u32>) -> String {
     }
 }
 
-fn get_grundy() -> Vec<u32> {
+fn get_grundy() -> Vec<u8> {
     let n = 3_000_000;
-    let mut grundy = vec![0u32; n + 1];
+    let mut grundy = vec![0u8; n + 1];
     grundy[1] = 1;
     let fibo = vec![
         1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946,
@@ -41,7 +41,7 @@ fn get_grundy() -> Vec<u32> {
                 break;
             }
         }
-        grundy[i] = bit.trailing_ones();
+        grundy[i] = bit.trailing_ones() as u8;
     }
 
     grundy
