@@ -12,20 +12,13 @@ fn main() {
 
 fn solve(nums: Vec<u32>) -> String {
     let mut res = 0u32;
-    let mut cnt = 0u32;
+    let mut flag = false;
     for num in nums {
-        if num == 1 {
-            cnt += 1;
-        }
+        flag |= num != 1;
         res ^= num;
     }
 
-    if res == 0 {
-        if cnt == 0 || cnt % 2 != 0 {
-            return "cubelover".to_string();
-        }
-        return "koosaga".to_string();
-    } else if res != 1 {
+    if (res == 0) ^ flag {
         return "koosaga".to_string();
     }
     "cubelover".to_string()
