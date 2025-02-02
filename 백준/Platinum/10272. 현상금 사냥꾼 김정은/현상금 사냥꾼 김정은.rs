@@ -8,12 +8,12 @@ struct Point {
 }
 
 trait Dist {
-    fn calc_dist(&self, point: Point) -> f64;
+    fn calc_dist(&self, point: Point) -> f32;
 }
 
 impl Dist for Point {
-    fn calc_dist(&self, point: Point) -> f64 {
-        ((self.y.abs_diff(point.y).pow(2) + self.x.abs_diff(point.x).pow(2)) as f64).sqrt()
+    fn calc_dist(&self, point: Point) -> f32 {
+        ((self.y.abs_diff(point.y).pow(2) + self.x.abs_diff(point.x).pow(2)) as f32).sqrt()
     }
 }
 fn main() {
@@ -36,9 +36,8 @@ fn main() {
     print!("{}", stdout);
 }
 
-fn solve(n: usize, nums: Vec<Point>) -> f64 {
-    let mut dp = vec![vec![1_000_000_f64; n + 1]; n + 1];
-    // dp[i][j] i까지 상승 j 까지 하강
+fn solve(n: usize, nums: Vec<Point>) -> f32 {
+    let mut dp = vec![vec![1_000_000_f32; n + 1]; n + 1];
 
     dp[0][0] = 0.0;
     dp[1][0] = 0.0;
@@ -72,7 +71,7 @@ fn solve(n: usize, nums: Vec<Point>) -> f64 {
         }
     }
 
-    let mut res = f64::MAX;
+    let mut res = f32::MAX;
 
     for i in 1..=n {
         res = res.min(dp[n][i] + nums[i - 1].calc_dist(nums[n - 1]));
