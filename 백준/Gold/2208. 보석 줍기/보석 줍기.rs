@@ -12,15 +12,11 @@ fn main() {
 }
 
 fn solve(n: usize, m: usize, nums: Vec<i32>) -> i32 {
-    let mut cnt = vec![1; n];
-    let mut dp = vec![i32::MIN; n];
     let mut pre = vec![0; n + 1];
 
     for i in 1..=n {
         pre[i] = pre[i - 1] + nums[i - 1];
     }
-
-    dp[0] = nums[0];
 
     let mut satisfied = vec![-1_000_000; n];
 
@@ -31,21 +27,11 @@ fn solve(n: usize, m: usize, nums: Vec<i32>) -> i32 {
             -1_000_000
         };
 
-        satisfied[i] = satisfied[i].max(val).max(satisfied[i - 1] + nums[i]);
-
-        if nums[i] < dp[i - 1] + nums[i] {
-            dp[i] = dp[i - 1] + nums[i];
-            cnt[i] = cnt[i - 1] + 1;
-        } else {
-            dp[i] = nums[i];
-        }
+        satisfied[i] = val.max(satisfied[i - 1] + nums[i]);
     }
 
     let mut res = 0;
     for i in 0..n {
-        if cnt[i] >= m {
-            res = res.max(dp[i]);
-        }
         res = res.max(satisfied[i]);
     }
     res
