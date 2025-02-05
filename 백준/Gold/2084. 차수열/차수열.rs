@@ -8,14 +8,12 @@ fn main() {
     let mut next = || token.next().unwrap();
 
     let n: usize = next().parse().unwrap();
-    let mut nums = Vec::with_capacity(n);
     let mut hq = BinaryHeap::with_capacity(n);
 
     let mut even = 0;
     for i in 0..n {
         let num: i32 = next().parse().unwrap();
         even += num;
-        nums.push(num);
         if num > 0 {
             hq.push((num, i));
         }
