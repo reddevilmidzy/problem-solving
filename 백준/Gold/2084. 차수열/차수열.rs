@@ -35,7 +35,7 @@ fn main() {
             return;
         }
 
-        let mut tmp = Vec::with_capacity(cur as usize);
+        let mut tmp = BinaryHeap::with_capacity(cur as usize);
         for _ in 0..cur {
             let (nxt, j) = hq.pop().unwrap();
             graph[i][j] = 1;
@@ -44,9 +44,7 @@ fn main() {
                 tmp.push((nxt - 1, j));
             }
         }
-        for (nxt, j) in tmp {
-            hq.push((nxt, j));
-        }
+        hq.append(&mut tmp);
     }
 
     let mut res = String::new();
