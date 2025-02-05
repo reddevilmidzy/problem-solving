@@ -28,9 +28,6 @@ fn solve(n: usize, nums: Vec<i32>) -> String {
         even += nums[i];
         if nums[i] > 0 {
             hq.push((nums[i], i));
-        } else if nums[i] >= n as i32 {
-            writeln!(res, "fail").unwrap();
-            return res;
         }
     }
     // 총합이 짝수여야 한다.
