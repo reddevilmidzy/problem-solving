@@ -22,11 +22,7 @@ fn solve(n: usize, m: usize, nums: Vec<i32>) -> i64 {
         while !dp.is_empty() && !(i - dp.front().unwrap().1 <= m) {
             dp.pop_front();
         }
-        let val = if dp.is_empty() {
-            nums[i] as i64
-        } else {
-            (nums[i] as i64).max(dp.front().unwrap().0 + nums[i] as i64)
-        };
+        let val = (nums[i] as i64).max(dp.front().unwrap_or(&(0, 0)).0 + nums[i] as i64);
         while !dp.is_empty() && dp.back().unwrap().0 <= val {
             dp.pop_back();
         }
