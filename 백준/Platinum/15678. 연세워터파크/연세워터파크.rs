@@ -9,12 +9,12 @@ fn main() {
     let n: usize = next().parse().unwrap();
     let m: usize = next().parse().unwrap();
 
-    let nums: Vec<i64> = (0..n).map(|_| next().parse().unwrap()).collect();
+    let nums: Vec<i32> = (0..n).map(|_| next().parse().unwrap()).collect();
 
     print!("{}", solve(n, m, nums));
 }
 
-fn solve(n: usize, m: usize, nums: Vec<i64>) -> i64 {
+fn solve(n: usize, m: usize, nums: Vec<i32>) -> i64 {
     let mut res = i64::MIN;
     let mut dp: VecDeque<(i64, usize)> = VecDeque::new();
 
@@ -23,9 +23,9 @@ fn solve(n: usize, m: usize, nums: Vec<i64>) -> i64 {
             dp.pop_front();
         }
         let val = if dp.is_empty() {
-            nums[i]
+            nums[i] as i64
         } else {
-            nums[i].max(dp.front().unwrap().0 + nums[i])
+            (nums[i] as i64).max(dp.front().unwrap().0 + nums[i] as i64)
         };
         while !dp.is_empty() && dp.back().unwrap().0 <= val {
             dp.pop_back();
@@ -35,13 +35,4 @@ fn solve(n: usize, m: usize, nums: Vec<i64>) -> i64 {
     }
 
     res
-}
-
-#[test]
-fn tmp() {
-    assert_eq!(
-        40,
-        solve(10, 2, vec![2, 7, -5, -4, 10, -5, -5, -5, 30, -10])
-    );
-    assert_eq!(-2, solve(3, 2, vec![-4, -2, -7]));
 }
