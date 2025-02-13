@@ -3,8 +3,6 @@ import sys
 input = sys.stdin.readline
 
 def nxt(x: int, y: int) -> tuple[int]:
-    if x == y:
-        return (x, y)
     min_v = min(x, y)
     max_v = max(x, y)
 
@@ -23,6 +21,7 @@ def bfs(a:int, b:int, c:int):
         if cur[0] == cur[2]:
             return 1
         for i,j,k in ((0,1,2), (1,2,0), (0,2,1)):
+            if cur[i] == cur[j]: continue
             y,x = nxt(cur[i], cur[j])
             tmp = tuple(sorted((y,x,cur[k])))
             if tmp not in visited:
