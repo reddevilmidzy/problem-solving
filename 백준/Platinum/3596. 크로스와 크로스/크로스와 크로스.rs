@@ -15,9 +15,17 @@ fn main() {
     let stdin = read_to_string(stdin()).unwrap();
     let mut token = stdin.split_whitespace();
     let mut next = || token.next().unwrap();
-    let n: usize = next().parse().unwrap();
+    let n: u32 = next().parse().unwrap();
+    let grundy: Vec<u32> = vec![
+        6, 12, 22, 30, 32, 44, 54, 64, 76, 86, 98, 110, 118, 130, 132, 162, 170, 184, 194, 202,
+        282, 290, 302, 356, 1046,
+    ];
 
-    print!("{}", solve(n))
+    if !grundy.contains(&n) {
+        print!("1");
+    } else {
+        print!("2");
+    }
 }
 
 fn solve(n: usize) -> u8 {
@@ -41,6 +49,14 @@ fn solve(n: usize) -> u8 {
         grundy[i] = mex(tmp);
     }
 
+    let mut tmp = Vec::new();
+    for i in 1..=n {
+        if grundy[i] == 0 {
+            tmp.push(i);
+        }
+    }
+
+    println!("{:?}", tmp);
     if grundy[n] != 0 {
         return 1;
     }
@@ -49,5 +65,5 @@ fn solve(n: usize) -> u8 {
 
 #[test]
 fn tmp() {
-    println!("{}", solve(10));
+    println!("{}", solve(2000));
 }
