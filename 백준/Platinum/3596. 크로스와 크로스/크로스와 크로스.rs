@@ -1,14 +1,14 @@
 use std::collections::HashSet;
 use std::io::{read_to_string, stdin};
 
-fn mex(arr: Vec<u32>) -> u32 {
+fn mex(arr: Vec<u8>) -> u8 {
     for i in 0..arr.len() {
-        if arr[i] != i as u32 {
-            return i as u32;
+        if arr[i] != i as u8 {
+            return i as u8;
         }
     }
 
-    arr.len() as u32
+    arr.len() as u8
 }
 
 fn main() {
@@ -21,7 +21,7 @@ fn main() {
 }
 
 fn solve(n: usize) -> u8 {
-    let mut grundy = vec![0; n + 1];
+    let mut grundy = vec![0u8; n + 1];
     grundy[1] = 1;
     grundy[2] = 1;
     grundy[3] = 1;
@@ -29,15 +29,14 @@ fn solve(n: usize) -> u8 {
     for i in 4..=n {
         let mut tmp = HashSet::new();
 
-        for j in 0..i - 2 {
+        for j in 0..(i + 5) / 2 - 2 {
             let left_idx = if j <= 2 { 0 } else { j - 2 };
             let right_idx = i - (j + 3);
             let left = grundy[left_idx];
             let right = grundy[right_idx];
-            // println!("i = {i}, left = {}, right = {}", j , i - j - 1);
             tmp.insert(left ^ right);
         }
-        let mut tmp: Vec<u32> = tmp.into_iter().collect();
+        let mut tmp: Vec<u8> = tmp.into_iter().collect();
         tmp.sort();
         grundy[i] = mex(tmp);
     }
