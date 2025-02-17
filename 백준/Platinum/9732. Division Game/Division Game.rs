@@ -7,6 +7,7 @@ fn main() {
     let mut next = || token.next().unwrap();
 
     let mut res = String::new();
+    let grundy = get_grundy();
 
     let t = next().parse().unwrap();
     for i in 1..=t {
@@ -17,63 +18,81 @@ fn main() {
             .map(|_| (0..m).map(|_| next().parse::<u32>().unwrap()).collect())
             .collect();
 
-        writeln!(res, "Case #{i}: {}", solve(n, m, nums)).unwrap();
+        writeln!(res, "Case #{i}: {}", solve(n, m, nums, &grundy)).unwrap();
     }
     print!("{res}");
 }
 
-fn get_factor_cnt() -> Vec<u32> {
-    let m = 10000;
-    let mut res = vec![0; m + 1];
+fn get_factor(num: u32) -> Vec<u32> {
+    let mut res = Vec::new();
+    // res.push(1);
+    res.push(num);
 
-    let mut is_prime = vec![true; m + 1];
-
-    for i in 2..=m {
-        if is_prime[i] {
-            for j in (i..=m).step_by(i) {
-                let mut x = j;
-                let mut cnt = 0;
-                while x % i == 0 {
-                    x /= i;
-                    cnt += 1;
-                }
-
-                res[j] += cnt;
-                is_prime[j] = false;
+    for i in 2..=(num as f32).sqrt() as u32 {
+        if num % i == 0 {
+            res.push(i);
+            if num / i != i {
+                res.push(num / i);
             }
         }
     }
+    res.sort();
+
     res
 }
 
-
-fn solve(n: usize, m: usize, nums: Vec<Vec<u32>>) -> String {
-    let cnt = get_factor_cnt();
+fn solve(n: usize, m: usize, nums: Vec<Vec<u32>>, grundy: &Vec<u16>) -> String {
+    // let grundy = get_grundy();
+    // 내가 동시에 취할 수 있는 행동은 xor 시키고.
+    // 한 턴에서 할 수 있는 그런디 수를 확인하기 위해 현재 상태에서 갈 수 있는 상태 값들의 mex를 구한다.
 
     let mut res = 0;
+    let mut flag = false;
 
     for i in 0..n {
         // 이번 턴에서 할 수 있느 것
         let mut add = 0;
 
         for j in 0..m {
-            add += cnt[nums[i][j] as usize];
+            add += grundy[nums[i][j] as usize];
+            // print!("{} ", grundy[nums[i][j] as usize]);
         }
 
+        flag |= add != 1;
         res ^= add;
+
     }
 
-    if res != 0 {
+    if (res == 0) ^ flag {
         "YES".to_string()
     } else {
         "NO".to_string()
     }
 }
 
+fn mex(num: u16) -> u16 {
+    for i in 0..=15 {
+        if num & (1 << i) == 0 {
+            return i as u16;
+        }
+    }
+    16
+}
 
-#[test]
-fn tmp() {
-    let val = solve(2, 3, vec![vec![4, 5, 6], vec![7, 8, 9]]);
+fn get_grundy() -> Vec<u16> {
+    let m = 10000;
+    let mut grundy = vec![0; m + 1];
 
-    print!("{}", val);
+    for i in 2..=m {
+        let factors = get_factor(i as u32);
+        let mut bit = 0;
+
+        for factor in factors {
+            bit |= 1 << grundy[factor as usize];
+        }
+
+        grundy[i] = mex(bit);
+    }
+
+    grundy
 }
