@@ -25,7 +25,6 @@ for i in range(n):
     for j in range(i+1):
         if graph[i][j] == 1:
             union_parent(parent, i, j)
-
 pre = find_parent(parent, nums[0]-1)
 
 for k in range(1,m):
