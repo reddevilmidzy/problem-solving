@@ -21,7 +21,7 @@ fn main() {
         pre[i] += pre[i-1]
     }
 
-    let mut res = String::new();
+    let mut res = String::with_capacity(n + n / 4);
     for i in 0..n {
         write!(res, "{} ", nums[i] + pre[i]).unwrap();
     }
