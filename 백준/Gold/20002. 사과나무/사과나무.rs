@@ -21,11 +21,8 @@ fn main() {
     let mut res = i32::MIN;
 
     for k in 0..n {
-        for i in 1..=n {
-            for j in 1..=n {
-                if i + k > n || j + k > n {
-                    continue;
-                }
+        for i in 1..=n-k {
+            for j in 1..=n-k {
                 let tmp =
                     pre[i + k][j + k] - pre[i - 1][j + k] - pre[i + k][j - 1] + pre[i - 1][j - 1];
                 res = res.max(tmp);
