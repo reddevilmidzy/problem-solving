@@ -1,15 +1,30 @@
-fn main() {
-    let n: usize = 1_000;
-    const MOD: u64 = 1_000_000_007;
-    let mut dp = vec![0u64; n + 1];
-    dp[0] = 1;
-    dp[1] = 1;
+const MOD: u64 = 1_000_000_007;
 
-    for i in 1..=n {
-        let mut tmp = 0u64;
-        for j in 0..i {
-            tmp = ((tmp % MOD) + (dp[j] * dp[i - j]) % MOD) % MOD;
-        }
-        dp[i] = tmp;
+fn pow_mod(base: u64, exp: u64) -> u64 {
+    if exp == 0 {
+        return 1;
     }
+    let mut res = pow_mod(base, exp / 2);
+    res = (res * res) % MOD;
+    if exp & 1 != 0 {
+        res = res * base % MOD;
+    }
+    res
+}
+
+fn find_catalan(n: u64) -> u64 {
+    let mut res = 1;
+
+    for i in 2..=n {
+        let a = res * (4 * i - 2) % MOD;
+        let b = pow_mod(i + 1, MOD - 2);
+        res = a * b % MOD;
+    }
+    res
+}
+
+fn main() {
+    let n: u64 = 1_000;
+
+    print!("{}", find_catalan(n));
 }
