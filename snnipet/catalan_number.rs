@@ -1,9 +1,4 @@
 fn main() {
-    let stdin = read_to_string(stdin()).unwrap();
-    let mut token = stdin.split_whitespace();
-    let mut next = || token.next().unwrap();
-    let mut res = String::new();
-
     let n: usize = 1_000;
     const MOD: u64 = 1_000_000_007;
     let mut dp = vec![0u64; n + 1];
