@@ -1,4 +1,4 @@
-use std::collections::{HashMap, VecDeque};
+use std::collections::VecDeque;
 use std::io::{read_to_string, stdin};
 
 fn calc(c: char) -> u8 {
@@ -127,52 +127,38 @@ fn main() {
     nums[9] |= calc('f');
     nums[9] |= calc('g');
 
-    let mut graph: HashMap<(usize, usize), Vec<(usize, usize)>> = HashMap::new();
-
     let nn = n as i32;
     let mm = m as i32;
 
-    for y in 0..nn {
-        for x in 0..mm {
-            // a,b,c,d,e,f
-            for k in 0..6 {
-                let nxt = nxt_pos(k);
-                // 상대 위치
-                let ny = y + nxt.0;
-                let nx = x + nxt.1;
-
-                if ny < 0 || nx < 0 || ny >= nn || nx >= mm {
-                    continue;
-                }
-                let ny = ny as usize;
-                let nx = nx as usize;
-
-                // 상대꺼
-                let p = partner(k);
-                let y = y as usize;
-                let x = x as usize;
-                let cur = nums[board[y][x]];
-                let nxt = nums[board[ny][nx]];
-                let k = k as u8;
-
-                if ((cur >> k) & 1) != 0 && ((nxt >> p) & 1) != 0 {
-                    graph.entry((y, x)).or_default().push((ny, nx));
-                    graph.entry((ny, nx)).or_default().push((y, x));
-                }
-            }
-        }
-    }
-
     let mut visited = vec![vec![false; m]; n];
     let mut queue = VecDeque::new();
-    queue.push_back((0usize, 0usize));
+    queue.push_back((0, 0));
     visited[0][0] = true;
 
     while let Some((y, x)) = queue.pop_front() {
-        for &(ny, nx) in graph.get(&(y, x)).unwrap_or(&vec![]) {
-            if !visited[ny][nx] {
+        for k in 0..6 {
+            let nxt = nxt_pos(k);
+            // 상대 위치
+            let ny = y + nxt.0;
+            let nx = x + nxt.1;
+
+            if ny < 0 || nx < 0 || ny >= nn || nx >= mm {
+                continue;
+            }
+            let ny = ny as usize;
+            let nx = nx as usize;
+
+            // 상대꺼
+            let p = partner(k);
+            let y = y as usize;
+            let x = x as usize;
+            let cur = nums[board[y][x]];
+            let nxt = nums[board[ny][nx]];
+            let k = k as u8;
+
+            if ((cur >> k) & 1) != 0 && ((nxt >> p) & 1) != 0 && !visited[ny][nx] {
                 visited[ny][nx] = true;
-                queue.push_back((ny, nx));
+                queue.push_back((ny as i32, nx as i32));
             }
         }
     }
