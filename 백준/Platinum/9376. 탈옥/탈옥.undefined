@@ -1,0 +1,102 @@
+use std::collections::VecDeque;
+use std::fmt::Write;
+use std::io::{read_to_string, stdin};
+use std::vec;
+
+const INF: i32 = 1_000_000;
+
+fn solve(board: &Vec<Vec<char>>, h: usize, w: usize, st_y: usize, st_x: usize) -> Vec<Vec<i32>> {
+    let mut queue = VecDeque::new();
+    let mut visited = vec![vec![INF; w]; h];
+
+    visited[st_y][st_x] = 0;
+    queue.push_back((st_y, st_x));
+
+    let h = h as i32;
+    let w = w as i32;
+
+    let dy = vec![1, 0, -1, 0];
+    let dx = vec![0, 1, 0, -1];
+
+    while let Some((y, x)) = queue.pop_front() {
+        for i in 0..4 {
+            let ny = dy[i] + y as i32;
+            let nx = dx[i] + x as i32;
+
+            if ny < 0 || nx < 0 || ny >= h || nx >= w {
+                continue;
+            }
+            let ny = ny as usize;
+            let nx = nx as usize;
+
+            if board[ny][nx] == '*' {
+                continue;
+            }
+
+            if (board[ny][nx] == '.' || board[ny][nx] == '$') && visited[ny][nx] > visited[y][x] {
+                visited[ny][nx] = visited[y][x];
+                queue.push_front((ny, nx));
+            } else if board[ny][nx] == '#' && visited[ny][nx] > visited[y][x] + 1 {
+                visited[ny][nx] = visited[y][x] + 1;
+                queue.push_back((ny, nx));
+            }
+        }
+    }
+
+    visited
+}
+
+fn main() {
+    let stdin = read_to_string(stdin()).unwrap();
+    let mut token = stdin.split_whitespace();
+    let mut next = || token.next().unwrap();
+
+    let mut res = String::new();
+    let t: u32 = next().parse().unwrap();
+
+    for _ in 0..t {
+        let h: usize = next().parse().unwrap();
+        let w: usize = next().parse().unwrap();
+
+        let mut board: Vec<Vec<char>> = vec![vec!['.'; w + 2]; h + 2];
+
+        for i in 1..=h {
+            let line = next()
+                .parse::<String>()
+                .unwrap()
+                .chars()
+                .collect::<Vec<char>>();
+            for j in 1..=w {
+                board[i][j] = line[j - 1];
+            }
+        }
+
+        let mut pos = Vec::with_capacity(2);
+
+        for i in 0..=h + 1 {
+            for j in 0..=w + 1 {
+                if board[i][j] == '$' {
+                    pos.push((i, j));
+                }
+            }
+        }
+
+        let (a_y, a_x) = pos[0];
+        let (b_y, b_x) = pos[1];
+
+        let a = solve(&board, h + 2, w + 2, a_y, a_x);
+        let b = solve(&board, h + 2, w + 2, b_y, b_x);
+        // buffer idea interesting
+        let c = solve(&board, h + 2, w + 2, 0, 0);
+
+        let mut ans = INF;
+        for i in 0..=h + 1 {
+            for j in 0..=w + 1 {
+                let dup = if board[i][j] == '#' { 2 } else { 0 };
+                ans = ans.min(a[i][j] + b[i][j] + c[i][j] - dup);
+            }
+        }
+        writeln!(res, "{}", ans).unwrap();
+    }
+    print!("{res}");
+}
