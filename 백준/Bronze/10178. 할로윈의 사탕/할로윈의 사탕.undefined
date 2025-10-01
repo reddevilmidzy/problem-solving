@@ -1,0 +1,24 @@
+use std::fmt::Write;
+use std::io::{read_to_string, stdin};
+
+fn main() {
+    let stdin = read_to_string(stdin()).unwrap();
+    let mut token = stdin.split_whitespace();
+    let mut next = || token.next().unwrap();
+
+    let mut res = String::new();
+
+    let t: usize = next().parse().unwrap();
+    for _ in 0..t {
+        let (c, v): (u32, u32) = (next().parse().unwrap(), next().parse().unwrap());
+        writeln!(
+            res,
+            "You get {} piece(s) and your dad gets {} piece(s).",
+            c / v,
+            c % v
+        )
+        .unwrap();
+    }
+
+    print!("{res}");
+}
