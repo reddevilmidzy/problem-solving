@@ -1,0 +1,41 @@
+use std::io::{read_to_string, stdin};
+
+fn main() {
+    let stdin = read_to_string(stdin()).unwrap();
+    let mut token = stdin.split_whitespace();
+    let mut next = || token.next().unwrap();
+
+    let n: usize = next().parse().unwrap();
+    let k: u32 = next().parse().unwrap();
+
+    let nums: Vec<u32> = (0..n).map(|_| next().parse().unwrap()).collect();
+
+    let mut l = 0;
+    let mut r = 1_000_000_000;
+
+    while l + 1 < r {
+        let mid = (l + r) / 2;
+
+        if can(&nums, &mid, k) {
+            r = mid;
+        } else {
+            l = mid;
+        }
+    }
+    print!("{}", l + 1);
+}
+
+fn can(nums: &Vec<u32>, val: &u32, k: u32) -> bool {
+    let mut cnt = 0;
+    for num in nums {
+        if num <= val {
+            cnt = 0;
+        } else if cnt + 1 < k {
+            cnt += 1;
+        } else {
+            return false;
+        }
+    }
+
+    true
+}
