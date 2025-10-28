@@ -1,0 +1,54 @@
+use std::{
+    collections::VecDeque,
+    io::{read_to_string, stdin},
+};
+
+const INF: usize = 1_000_000_000;
+
+fn main() {
+    let stdin = read_to_string(stdin()).unwrap();
+    let mut token = stdin.split_whitespace();
+    let mut next = || token.next().unwrap();
+
+    let n: usize = next().parse().unwrap();
+    let m: usize = next().parse().unwrap();
+    let mut graph = vec![vec![Vec::new(); n + 1]; 2];
+
+    for _ in 0..m {
+        let u: usize = next().parse().unwrap();
+        let v: usize = next().parse().unwrap();
+        let w: usize = next().parse().unwrap();
+
+        graph[w][u].push(v);
+        graph[w][v].push(u);
+    }
+
+    let a: usize = next().parse().unwrap();
+    let b: usize = next().parse().unwrap();
+
+    let mut distance = vec![vec![INF; n + 1]; 2];
+    let mut queue = VecDeque::new();
+    // cur, dist, (dc or ac)
+    queue.push_back((a, 0));
+    queue.push_back((a, 1));
+
+    distance[0][a] = 0;
+    distance[1][a] = 0;
+
+    while let Some((cur, c)) = queue.pop_front() {
+        for &nxt in &graph[c][cur] {
+            if distance[c][nxt] > distance[c][cur] {
+                distance[c][nxt] = distance[c][cur];
+                queue.push_front((nxt, c));
+            }
+        }
+
+        let nc = if c == 0 { 1 } else { 0 };
+        if distance[nc][cur] > distance[c][cur] + 1 {
+            distance[nc][cur] = distance[c][cur] + 1;
+            queue.push_back((cur, nc));
+        }
+    }
+
+    print!("{}", distance[0][b].min(distance[1][b]))
+}
