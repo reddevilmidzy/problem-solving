@@ -1,0 +1,15 @@
+// Generated with https://github.com/boj-rs/basm-rs
+// Learn rust (https://doc.rust-lang.org/book/) and get high performance out of the box!
+// SOLUTION BEGIN
+#![crate_type="cdylib"]#![no_std]#[cfg(any())]mod x{
+use basm::platform::io::*;
+pub fn main() {
+    let mut reader: Reader = Default::default();
+    let mut writer: Writer = Default::default();
+    let a = reader.i64();
+    let b = reader.i64();
+    writer.println(a + b);
+}
+}
+// SOLUTION END
+#[no_link]extern crate std;#[unsafe(no_mangle)]unsafe fn _start(){std::arch::asm!(".quad 56c931459958096ah,47358b48ff31h,6a5a41226a07b200h,97485e050f5841ffh,0c931ac0de0c11fb0h,0ac91c8fe1676232ch,0aac8015bc06b242ch,0f77510c4f608e8c1h,74aaf3ff4f86e0ebh,0e48348f87f2b48dch,9090d7ff51c931f0h,1264",in("rsi")r"F;#^)#6$;/$$&$;/#J5#_:n&#d:;/XH($;/#e7#P-u'InI|T]&qS]^Vf-T]$q\;)R*qdZ[LSZR>wWU|#WVvWW:k>xW[:*+[S[-l*>\EIE8evyB@=]`OSp&#wpV&e)_V#V;e|EQ$/#[b30['Z&\$&$mXKg\<s>|0MQn&*2}1],$$^)R:i0m@q&#EIc0H$%Qo&#a5e|*j%$$$/>K1.>M&/Ko&#a5A(_'_&X0h{hEG@HKx5$0})$;$)d0D$%$n&n&#a5(m~YpBx&fF.>&VS}ReS7UA';LhSC$|zt9-FY[:A(y*&=k0v:D$2mR:BU$|i>_Vp)k]BF\:cs)e$|\<0+c<7f7E(=FUT0r:SR>(#HKt4Ss})\:JcS:#%$a5K,.>_%$$%$l*Tga56992l$Z3|+^)#d&'C@\|SsG['aiSg&$0A.y`i)jn&#h{3$;NG\.>HHT%?(#%$s_9f-Qn&A=,W{?]$vW^QQ8pk['Wu2>X[Q9Wi@=$$2>G1HIG'D'yUm&92\'~6\5r&;/3>J%$$%$s2;(,$%$$$bbc0qEHcV.[bU*G;{ZuBo&>0gCz;$$%$(0*-$$NY+_d:_n7He|7=`|LY@=N%~eIES=4t'$zW^:m&VFz-[gn&zB;SQkU;69{<ie%~@=T%C(#%$VF}Z,$n&$$O'kHaLa5K,(0{Z,$NY0@\)f8$|BPQe7VE1EIHT$|pyB=T0)b|8J{9-9/$We,gC:BL%fP['L^.>\%,$%$a5K,.>S78Yt_ENb<MR`<n'U;CPodbi{$a<VV$0@H9-zt'C>ha5N%fZMRrBu*Z:wLx@<G3S4LA6s7_4gCL8v:['}1gCT8IQ['tGgC40(@/k6&eZgCk/kCeQReTgqQi05;ed9E~.:/#$$#^&-2#!".as_ptr())}
