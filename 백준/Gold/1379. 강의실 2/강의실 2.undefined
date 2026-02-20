@@ -1,0 +1,60 @@
+use std::{
+    cmp::Reverse,
+    collections::BinaryHeap,
+    fmt::Write,
+    io::{read_to_string, stdin},
+};
+
+fn main() {
+    let stdin = read_to_string(stdin()).unwrap();
+    let mut token = stdin.split_whitespace();
+    let mut next = || token.next().unwrap();
+
+    let n = next().parse::<usize>().unwrap();
+    let mut nums = (0..n)
+        .map(|_| {
+            (
+                next().parse::<usize>().unwrap(),
+                next().parse::<u64>().unwrap(),
+                next().parse::<u64>().unwrap(),
+            )
+        })
+        .collect::<Vec<_>>();
+    print!("{}", solve(n, &mut nums));
+}
+
+fn solve(n: usize, nums: &mut Vec<(usize, u64, u64)>) -> String {
+    let mut res = String::with_capacity(n);
+    let mut hq = BinaryHeap::new();
+    nums.sort_unstable_by_key(|x| (x.1, x.2));
+
+    let mut room = vec![0; n + 1];
+    let mut k = 1;
+
+    for (idx, st, ed) in nums {
+        if hq.is_empty() {
+            room[*idx] = k;
+            hq.push(Reverse((ed, st, idx, k)));
+            k += 1;
+            continue;
+        }
+        if let Some(Reverse((pre_ed, _, _, _))) = hq.peek()
+            && *pre_ed <= st
+        {
+            let Reverse((_, _, _, pre_k)) = hq.pop().unwrap();
+            room[*idx] = pre_k;
+            hq.push(Reverse((ed, st, idx, pre_k)));
+        } else {
+            room[*idx] = k;
+            hq.push(Reverse((ed, st, idx, k)));
+            k += 1;
+        }
+    }
+
+    write!(res, "{} ", hq.len()).unwrap();
+    for i in 1..=n {
+        write!(res, "{} ", room[i]).unwrap();
+    }
+
+    res
+}
