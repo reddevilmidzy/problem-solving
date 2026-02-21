@@ -9,17 +9,16 @@ fn main() {
     let mut nums = (0..n)
         .map(|_| next().parse::<u32>().unwrap())
         .collect::<Vec<_>>();
-    print!("{}", solve(n, &mut nums));
-}
-
-fn solve(n: usize, nums: &mut Vec<u32>) -> u32 {
-    let mut res = 0;
     nums.sort_unstable();
     nums.reverse();
 
+    print!("{}", solve(n, nums));
+}
+
+fn solve(n: usize, nums: Vec<u32>) -> u32 {
+    let mut res = 0;
     for i in 1..=n {
         let mut ans = 0;
-
         for j in 0..i {
             if nums[j] > j as u32 {
                 ans += nums[j] - j as u32;
@@ -27,9 +26,7 @@ fn solve(n: usize, nums: &mut Vec<u32>) -> u32 {
                 break;
             }
         }
-
         res = res.max(ans);
     }
-
     res
 }
