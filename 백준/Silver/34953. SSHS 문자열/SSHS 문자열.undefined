@@ -1,0 +1,25 @@
+use std::io::{read_to_string, stdin};
+
+fn main() {
+    let stdin = read_to_string(stdin()).unwrap();
+    let mut token = stdin.split_whitespace();
+    let mut next = || token.next().unwrap();
+
+    let n = next().parse::<usize>().unwrap();
+
+    // 4:1 SSHS
+    // 5:2 SSHSS
+    // 6:2 SSHSSH
+    // 7:3 SSHSSHSS
+
+    let mut res = Vec::with_capacity(n);
+    for i in 0..n {
+        if i % 3 == 2 {
+            res.push('H');
+        } else {
+            res.push('S');
+        }
+    }
+    
+    println!("{}", String::from_iter(res));
+}
