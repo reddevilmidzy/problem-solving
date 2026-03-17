@@ -1,0 +1,31 @@
+use std::io::{read_to_string, stdin};
+
+fn main() {
+    let stdin = read_to_string(stdin()).unwrap();
+    let mut token = stdin.split_whitespace();
+    let mut next = || token.next().unwrap();
+
+    let n = next().parse::<u32>().unwrap();
+    let t = next().parse::<u32>().unwrap();
+
+    let mut bus = Vec::new();
+    for _ in 0..n {
+        let (st, inter, cnt) = (
+            next().parse::<u32>().unwrap(),
+            next().parse::<u32>().unwrap(),
+            next().parse::<u32>().unwrap(),
+        );
+        for i in 0..cnt {
+            bus.push(st + inter * i);
+        }
+    }
+
+    bus.sort_unstable();
+    let idx = bus.partition_point(|&x| x < t);
+
+    if idx < bus.len() {
+        print!("{}", bus[idx] - t);
+    } else {
+        print!("-1");
+    }
+}
